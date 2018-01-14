@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="AR_Prudente" size="1.000000 0.750000" />
+    <ImageTarget name="AR_Mistades" size="1.000000 0.750000" />
+    <ImageTarget name="AR_BrVic" size="1.000000 0.750000" />
+    <ImageTarget name="AR_Module_1" size="1.000000 0.750000" />
+    <ImageTarget name="AR_Algocom" size="1.000000 0.566667" />
+    <ImageTarget name="2" size="1.000000 0.750000" />
+    <ImageTarget name="AR_Marker" size="1.000000 1.000000" />
+  </Tracking>
+</QCARConfig>
