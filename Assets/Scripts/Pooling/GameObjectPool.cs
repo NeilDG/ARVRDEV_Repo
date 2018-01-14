@@ -37,6 +37,7 @@ public class GameObjectPool : MonoBehaviour {
 	public APoolable RequestPoolable() {
 		if (this.HasObjectAvailable (1)) {
 			APoolable poolableObject = this.availableObjects [this.availableObjects.Count - 1];
+			poolableObject.SetPoolRef (this);
 			this.availableObjects.RemoveAt (this.availableObjects.Count - 1);
 			this.usedObjects.Add (poolableObject);
 

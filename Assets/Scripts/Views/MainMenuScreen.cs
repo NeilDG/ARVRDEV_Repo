@@ -14,6 +14,6 @@ public class MainMenuScreen : View {
 	}
 
 	public void OnPhysicsARClicked() {
-
+		LoadManager.Instance.LoadScene (SceneNames.AR_PHYSICS_SCENE);
 	}
 }
