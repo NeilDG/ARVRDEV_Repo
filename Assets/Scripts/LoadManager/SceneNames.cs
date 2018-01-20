@@ -9,4 +9,5 @@ public class SceneNames {
 	public const string MAIN_SCENE = "MainMenuScene";
 	public const string ROTATE_OBJECT_SCENE = "RotateObjectScene";
 	public const string AR_PHYSICS_SCENE = "ARPhysicsScene";
+	public const string AR_EXTENDED_TRACKING_SCENE = "ARExtendedTrackingScene";
 }

@@ -16,4 +16,17 @@ public class MainMenuScreen : View {
 	public void OnPhysicsARClicked() {
 		LoadManager.Instance.LoadScene (SceneNames.AR_PHYSICS_SCENE);
 	}
+
+	public void OnExtendedTrackingClicked() {
+		LoadManager.Instance.LoadScene (SceneNames.AR_EXTENDED_TRACKING_SCENE);
+	}
+
+	public override void OnRootScreenBack ()
+	{
+		DialogInterface dialog = DialogBuilder.Create (DialogBuilder.DialogType.CHOICE_DIALOG);
+		dialog.SetMessage ("Exit the application?");
+		dialog.SetOnConfirmListener (() => {
+			Application.Quit();
+		});
+	}
 }
