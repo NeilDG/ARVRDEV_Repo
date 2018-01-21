@@ -4,11 +4,11 @@ using UnityEngine;
 using Vuforia;
 
 /// <summary>
-/// Object placer handler logic.
+/// Object placer handler logic using virtual button.
 /// By: NeilDG
 ///HINT: Alt+Insert to implement interface functions
 /// </summary>
-public class ObjectPlacer : ImageTargetBehaviour, IVirtualButtonEventHandler {
+public class VirtualObjectPlacer : ImageTargetBehaviour, IVirtualButtonEventHandler {
 
 	public enum GameState {
 		NONE,
@@ -36,13 +36,14 @@ public class ObjectPlacer : ImageTargetBehaviour, IVirtualButtonEventHandler {
 			this.abominationCopy.SetActive (false);
 			this.trackedSuccess = true;
 		}
+			
 	}
 
 	public void OnButtonPressed (VirtualButtonBehaviour vb)
 	{
 		Vector2 topLeftPos = Vector2.zero;
 		Vector2 bottomRightPos = Vector2.zero;
-		this.abominationCopy.SetActive (true);
+		//this.abominationCopy.SetActive (true);
 
 		if (vb.CalculateButtonArea (out topLeftPos, out bottomRightPos)) {
 			GameObject abomination = GameObject.Instantiate<GameObject> (this.abominationCopy, this.transform);
