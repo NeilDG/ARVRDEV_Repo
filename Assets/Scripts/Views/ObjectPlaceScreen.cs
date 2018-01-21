@@ -6,9 +6,11 @@ using UnityEngine.UI;
 
 public class ObjectPlaceScreen : MonoBehaviour {
 
-	[SerializeField] private Text numScanText;
+	[SerializeField] private Text selectedText;
 
 	private int eventFires = 0;
+
+	private bool showToggle = true;
 
 	// Use this for initialization
 	void Start () {
@@ -27,8 +29,26 @@ public class ObjectPlaceScreen : MonoBehaviour {
 
 	private void OnTargetScan() {
 		this.gameObject.SetActive(true);
-		this.eventFires++;
-		this.numScanText.text = "Event Fires: " + this.eventFires;
+	}
+
+	public void OnSelectedButton(int buildingID) {
+		this.selectedText.text = "Selected: Building " +buildingID;
+		ObjectPlacerManager.Instance.SetSelected (buildingID);
+	}
+
+	public void OnShowHideClicked() {
+		this.showToggle = !this.showToggle;
+
+		if (this.showToggle) {
+			EventBroadcaster.Instance.PostEvent (EventNames.ExtendTrackEvents.ON_SHOW_ALL);
+		} else {
+			EventBroadcaster.Instance.PostEvent (EventNames.ExtendTrackEvents.ON_HIDE_ALL);
+		}
+	}
+
+	public void OnDeleteAll() {
+		this.showToggle = true;
+		EventBroadcaster.Instance.PostEvent (EventNames.ExtendTrackEvents.ON_DELETE_ALL);
 	}
 
 

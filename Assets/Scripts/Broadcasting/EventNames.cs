@@ -20,6 +20,9 @@ public class EventNames {
 
 	public class ExtendTrackEvents {
 		public const string ON_TARGET_SCAN = "ON_TARGET_SCAN";
+		public const string ON_SHOW_ALL = "ON_SHOW_ALL";
+		public const string ON_HIDE_ALL = "ON_HIDE_ALL";
+		public const string ON_DELETE_ALL = "ON_DELETE_ALL";
 	}
 }
 
