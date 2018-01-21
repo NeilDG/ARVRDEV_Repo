@@ -17,6 +17,10 @@ public class EventNames {
 		public const string ON_FIRST_TARGET_SCAN = "ON_FIRST_TARGET_SCAN";
 		public const string ON_FINAL_TARGET_SCAN = "ON_FINAL_TARGET_SCAN";
 	}
+
+	public class ExtendTrackEvents {
+		public const string ON_TARGET_SCAN = "ON_TARGET_SCAN";
+	}
 }
 
 
