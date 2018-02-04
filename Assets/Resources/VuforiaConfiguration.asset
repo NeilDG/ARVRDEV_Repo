@@ -46,11 +46,13 @@ MonoBehaviour:
     dataSetsToLoad:
     - VuforiaMars_Images
     - VuforiaMars_VuMark
+    - GAMENG_RepoDB_OT
     - GAMENG_RepoDB
     - DefaultDB
     dataSetsToActivate:
     - VuforiaMars_Images
     - VuforiaMars_VuMark
+    - GAMENG_RepoDB_OT
     - GAMENG_RepoDB
     - DefaultDB
   videoBackground:
