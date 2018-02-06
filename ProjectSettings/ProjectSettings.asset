@@ -244,7 +244,7 @@ PlayerSettings:
   AndroidTargetDevice: 3
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Users/ADMINISTRATOR/Documents/GAM-ENG Materials/GAM-ENG_ARRepo/gameng.keystore
+  AndroidKeystoreName: C:/Users/delgallegon/Documents/GithubProjects/GAM-ENG_ARRepo/gameng.keystore
   AndroidKeyaliasName: neildg
   AndroidTVCompatibility: 0
   AndroidIsGame: 0
@@ -571,7 +571,7 @@ PlayerSettings:
     Android: 0
   incrementalIl2cppBuild: {}
   additionalIl2CppArgs: 
-  scriptingRuntimeVersion: 0
+  scriptingRuntimeVersion: 1
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
@@ -649,7 +649,7 @@ PlayerSettings:
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled: {}
   facebookSdkVersion: 7.9.4
-  apiCompatibilityLevel: 2
+  apiCompatibilityLevel: 3
   cloudProjectId: 
   projectName: 
   organizationId: 
