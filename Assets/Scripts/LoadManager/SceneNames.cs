@@ -15,4 +15,8 @@ public class SceneNames {
 	public const string X01_MAIN_SCENE = "X01_MainMenu";
 	public const string X01_AR_SCENE = "X01_ARPhysics";
 
+	//X22 scenes
+	public const string X22_MAIN_SCENE = "X22_MainMenu";
+	public const string X22_AR_SCENE = "X22_ARPhysics";
+
 }

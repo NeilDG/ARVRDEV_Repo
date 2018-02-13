@@ -16,4 +16,8 @@ public class ViewNames {
 		public const string TWO_CHOICE_DIALOG_NAME = "TwoChoiceDialog";
 		public const string NOTIFICATION_DIALOG_NAME = "NotificationDialog";
 	}
+
+	//for X22
+	public const string X22_MENU_SCREEN_NAME = "X22_MenuScreen";
+	public const string X22_NEW_SCREEN_NAME = "X22_NewScreen";
 }

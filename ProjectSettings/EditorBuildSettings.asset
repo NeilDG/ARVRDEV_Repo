@@ -23,3 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Workspaces/X01_ARPhysics.unity
     guid: 2b0c69d8329a8684ea73cc0778d10d86
+  - enabled: 1
+    path: Assets/Scenes/Workspaces/X22_ARPhysics.unity
+    guid: d14c03a09fcad614a998c179d723794a
+  - enabled: 1
+    path: Assets/Scenes/Workspaces/X22_MainMenu.unity
+    guid: 03bd2ec9ac87d0b44b8c65b8be7ba392
