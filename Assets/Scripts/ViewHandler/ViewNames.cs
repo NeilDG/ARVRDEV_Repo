@@ -20,4 +20,8 @@ public class ViewNames {
 	//for X22
 	public const string X22_MENU_SCREEN_NAME = "X22_MenuScreen";
 	public const string X22_NEW_SCREEN_NAME = "X22_NewScreen";
+
+	//for S18
+	public const string S18_MENU_SCREEN_NAME = "S18_MenuScreen";
+	public const string S18_NEW_SCREEN_NAME = "S18_OtherScreen";
 }

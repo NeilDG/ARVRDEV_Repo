@@ -29,3 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Workspaces/X22_MainMenu.unity
     guid: 03bd2ec9ac87d0b44b8c65b8be7ba392
+  - enabled: 1
+    path: Assets/Scenes/Workspaces/S18_ARPhysics.unity
+    guid: 23a802f8b5dd6e746b5e42c6c4c66415
+  - enabled: 1
+    path: Assets/Scenes/Workspaces/S18_MainMenu.unity
+    guid: 937ed6c47002b6d4da82a5ac5cd2de3e
