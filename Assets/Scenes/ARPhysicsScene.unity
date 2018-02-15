@@ -807,7 +807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolableObjectCopy: {fileID: 1013497924}
   poolableParent: {fileID: 310964332}
-  maxPoolSize: 20
+  maxPoolSize: 100
   fixedAllocation: 1
   availableObjects: []
   usedObjects: []
