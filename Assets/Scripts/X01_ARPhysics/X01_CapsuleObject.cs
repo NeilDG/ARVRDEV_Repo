@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class X01_CapsuleObject : APoolable {
+	
+	private const float Y_COORD_THRESHOLD = -1.757f;
 
-	private const float Y_COORD_THRESHOLD = -1.74f;
-
-	[SerializeField] private Rigidbody rigidBody;
 	// Use this for initialization
 	void Start () {
 		
@@ -26,7 +25,7 @@ public class X01_CapsuleObject : APoolable {
 
 	public override void Release ()
 	{
-		this.rigidBody.velocity = Vector3.zero;
+		this.GetComponent<Rigidbody> ().velocity = Vector3.zero;
 	}
 
 	public override void OnActivate ()
