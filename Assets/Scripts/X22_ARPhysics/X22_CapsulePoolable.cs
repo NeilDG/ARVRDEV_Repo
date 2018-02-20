@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class X22_CapsulePoolable : APoolable {
+	
 	private const float Y_COORD_THRESHOLD = -1.757f;
 
 	// Use this for initialization
@@ -19,7 +20,7 @@ public class X22_CapsulePoolable : APoolable {
 
 	public override void Initialize ()
 	{
-		
+		Debug.Log ("Capsule pool initialized");
 	}
 
 	public override void Release ()
