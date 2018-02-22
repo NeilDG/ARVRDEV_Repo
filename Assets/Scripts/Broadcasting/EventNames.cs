@@ -24,6 +24,12 @@ public class EventNames {
 		public const string ON_HIDE_ALL = "ON_HIDE_ALL";
 		public const string ON_DELETE_ALL = "ON_DELETE_ALL";
 	}
+
+	public class X01_Events {
+		public const string ON_FIRST_SCAN = "ON_FIRST_SCAN";
+		public const string ON_FINAL_SCAN = "ON_FINAL_SCAN";
+
+	}
 }
 
 
