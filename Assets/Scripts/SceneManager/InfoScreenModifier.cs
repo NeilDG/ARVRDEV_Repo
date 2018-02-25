@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ARPhysicsScene : MonoBehaviour {
+public class InfoScreenModifier : MonoBehaviour {
 
 	[TextArea][SerializeField] private string displayMsg;
 
