@@ -10,6 +10,7 @@ public class SceneNames {
 	public const string ROTATE_OBJECT_SCENE = "RotateObjectScene";
 	public const string AR_PHYSICS_SCENE = "ARPhysicsScene";
 	public const string AR_EXTENDED_TRACKING_SCENE = "ARExtendedTrackingScene";
+	public const string OCCLUSION_SCENE = "3DObjectScene";
 
 	//X01 scenes
 	public const string X01_MAIN_SCENE = "X01_MainMenu";
