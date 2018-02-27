@@ -29,4 +29,8 @@ public class X01_MenuScreen : View {
 	public void LoadARPhysics() {
 		LoadManager.Instance.LoadScene (SceneNames.X01_AR_SCENE);
 	}
+
+	public void LoadExtendedTracking() {
+		LoadManager.Instance.LoadScene (SceneNames.X01_EXTENDED_SCENE);
+	}
 }

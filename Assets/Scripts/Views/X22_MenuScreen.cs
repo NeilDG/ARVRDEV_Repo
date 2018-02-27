@@ -31,4 +31,8 @@ public class X22_MenuScreen : View {
 	public void LoadARScene() {
 		LoadManager.Instance.LoadScene (SceneNames.X22_AR_SCENE);
 	}
+
+	public void LoadExtendedScene() {
+		LoadManager.Instance.LoadScene (SceneNames.X22_EXTENDED_SCENE);
+	}
 }

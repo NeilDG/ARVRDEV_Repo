@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657856, g: 0.49641407, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657832, g: 0.49641377, b: 0.57481664, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -177,7 +177,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ar_image_target_1Material
+  m_Name: ar_lenten_targetMaterial
   m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -190,7 +190,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: e688193ad36449298d09a8e248e0641f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7507fd82f4e84f6bab5ab26380abdbde, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []
@@ -1091,7 +1091,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.5, y: 0, z: 0.350303}
+      m_Extent: {x: 0.5, y: 0, z: 0.307858}
   m_Shapes:
     vertices: []
     shapes: []
@@ -1144,7 +1144,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: 000000bf00000000ea5ab3be00000000ffff7f3f000000000000000000000000000000bf00000000ea5ab33e00000000ffff7f3f00000000000000000000803f0000003f00000000ea5ab3be00000000ffff7f3f000000000000803f000000000000003f00000000ea5ab33e00000000ffff7f3f000000000000803f0000803f
+    _typelessdata: 000000bf00000000909f9dbe000000000000803f000000000000000000000000000000bf00000000909f9d3e000000000000803f00000000000000000000803f0000003f00000000909f9dbe000000000000803f000000000000803f000000000000003f00000000909f9d3e000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -2779,15 +2779,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ad7f06b940ced843b6b5d8db142fe4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: ar_image_target_2
+  mTrackableName: ar_eraser_target
   mPreserveChildSize: 0
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/GAMENG_RepoDB.xml
   mExtendedTracking: 1
-  mAspectRatio: 0.700606
+  mAspectRatio: 0.383525
   mImageTargetType: 0
   mWidth: 1
-  mHeight: 0.700606
+  mHeight: 0.383525
 --- !u!4 &760392042
 Transform:
   m_ObjectHideFlags: 0
@@ -3238,10 +3238,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 973274047}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa83962ff9df0cf4da029d196aaec909, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d9f7a5c863cdd44094feb3fea8611ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayMsg: Align your camera with the image centered in your screen.
+  displayMsg: 
 --- !u!114 &973274050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3611,15 +3611,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: ar_image_target_1
+  mTrackableName: ar_lenten_target
   mPreserveChildSize: 0
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/GAMENG_RepoDB.xml
   mExtendedTracking: 1
-  mAspectRatio: 0.700606
+  mAspectRatio: 0.615716
   mImageTargetType: 0
   mWidth: 1
-  mHeight: 0.700606
+  mHeight: 0.615716
 --- !u!4 &1179810120
 Transform:
   m_ObjectHideFlags: 0
@@ -3882,7 +3882,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.5, y: 0, z: 0.3504065}
+      m_Extent: {x: 0.5, y: 0, z: 0.1917625}
   m_Shapes:
     vertices: []
     shapes: []
@@ -3935,7 +3935,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: 000000bf000000007b68b3be000000000000803f000000000000000000000000000000bf000000007b68b33e000000000000803f00000000000000000000803f0000003f000000007b68b3be000000000000803f000000000000803f000000000000003f000000007b68b33e000000000000803f000000000000803f0000803f
+    _typelessdata: 000000bf00000000645d44be000000000000803f000000000000000000000000000000bf00000000645d443e000000000000803f00000000000000000000803f0000003f00000000645d44be000000000000803f000000000000803f000000000000003f00000000645d443e000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -4078,7 +4078,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.5, y: 0, z: 0.350303}
+      m_Extent: {x: 0.5, y: 0, z: 0.1917625}
   m_Shapes:
     vertices: []
     shapes: []
@@ -4131,7 +4131,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: 000000bf00000000ea5ab3be00000000ffff7f3f000000000000000000000000000000bf00000000ea5ab33e00000000ffff7f3f00000000000000000000803f0000003f00000000ea5ab3be00000000ffff7f3f000000000000803f000000000000003f00000000ea5ab33e00000000ffff7f3f000000000000803f0000803f
+    _typelessdata: 000000bf00000000645d44be000000000000803f000000000000000000000000000000bf00000000645d443e000000000000803f00000000000000000000803f0000003f00000000645d44be000000000000803f000000000000803f000000000000003f00000000645d443e000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -4344,7 +4344,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ar_image_target_3Material
+  m_Name: ar_eraser_targetMaterial
   m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -4357,7 +4357,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 49d553a7cee241819b3c64cbba198b13, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9f7ff52cb8f54b3abcc3bcb222fbb59a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []
@@ -4664,15 +4664,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9182b067a5aa4fa4ea24441d8efedfe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: ar_image_target_3
+  mTrackableName: ar_eraser_target
   mPreserveChildSize: 0
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/GAMENG_RepoDB.xml
   mExtendedTracking: 1
-  mAspectRatio: 0.700813
+  mAspectRatio: 0.383525
   mImageTargetType: 0
   mWidth: 1
-  mHeight: 0.700813
+  mHeight: 0.383525
 --- !u!4 &1600892546
 Transform:
   m_ObjectHideFlags: 0
@@ -5590,7 +5590,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ar_image_target_2Material
+  m_Name: ar_eraser_targetMaterial
   m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -5603,7 +5603,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 42be2c37ba98495aab2272fbf59c2f30, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9f7ff52cb8f54b3abcc3bcb222fbb59a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []

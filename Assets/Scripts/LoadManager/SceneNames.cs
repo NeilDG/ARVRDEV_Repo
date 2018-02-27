@@ -15,10 +15,12 @@ public class SceneNames {
 	//X01 scenes
 	public const string X01_MAIN_SCENE = "X01_MainMenu";
 	public const string X01_AR_SCENE = "X01_ARPhysics";
+	public const string X01_EXTENDED_SCENE = "X01_ExtendedTracking";
 
 	//X22 scenes
 	public const string X22_MAIN_SCENE = "X22_MainMenu";
 	public const string X22_AR_SCENE = "X22_ARPhysics";
+	public const string X22_EXTENDED_SCENE = "X22_ExtendedTracking";
 
 	//S18 scenes
 	public const string S18_MAIN_SCENE = "S18_MainMenu";

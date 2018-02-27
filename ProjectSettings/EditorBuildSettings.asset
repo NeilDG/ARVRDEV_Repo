@@ -20,3 +20,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/3DObjectScene.unity
     guid: 63da5560b13fe674d8ce7470ca80d655
+  - enabled: 1
+    path: Assets/Scenes/Workspaces/X01_MainMenu.unity
+    guid: d4bc1c09aa6999e458d83c266042566e
+  - enabled: 1
+    path: Assets/Scenes/Workspaces/X01_ARPhysics.unity
+    guid: 2b0c69d8329a8684ea73cc0778d10d86
+  - enabled: 1
+    path: Assets/Scenes/Workspaces/X01_ExtendedTracking.unity
+    guid: 47a212bdb14efb64fb68c74bf07082b8
+  - enabled: 1
+    path: Assets/Scenes/Workspaces/X22_MainMenu.unity
+    guid: 03bd2ec9ac87d0b44b8c65b8be7ba392
+  - enabled: 1
+    path: Assets/Scenes/Workspaces/X22_ExtendedTracking.unity
+    guid: 401412f0d35b6af4493ab43feff5378e
