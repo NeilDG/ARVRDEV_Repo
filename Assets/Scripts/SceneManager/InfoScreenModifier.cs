@@ -10,8 +10,6 @@ public class InfoScreenModifier : MonoBehaviour {
 	void Start () {
 		InfoScreen infoScreen = (InfoScreen) ViewHandler.Instance.Show (ViewNames.INFO_SCREEN_NAME);
 		infoScreen.SetMessage (this.displayMsg);
-
-		ViewHandler.Instance.Show ("X01_HudScreen");
 	}
 	
 	// Update is called once per frame
