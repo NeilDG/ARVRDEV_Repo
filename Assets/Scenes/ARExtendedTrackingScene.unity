@@ -842,7 +842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mWorldCenterMode: 0
-  mWorldCenter: {fileID: 1600892545}
+  mWorldCenter: {fileID: 0}
 --- !u!81 &168213946
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2779,12 +2779,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ad7f06b940ced843b6b5d8db142fe4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: ar_eraser_target
+  mTrackableName: ar_image_target_2
   mPreserveChildSize: 0
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/GAMENG_RepoDB.xml
   mExtendedTracking: 1
-  mAspectRatio: 0.383525
+  mAspectRatio: 0.700606
   mImageTargetType: 0
   mWidth: 1
   mHeight: 0.383525
@@ -4078,7 +4078,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.5, y: 0, z: 0.1917625}
+      m_Extent: {x: 0.5, y: 0, z: 0.350303}
   m_Shapes:
     vertices: []
     shapes: []
@@ -4131,7 +4131,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: 000000bf00000000645d44be000000000000803f000000000000000000000000000000bf00000000645d443e000000000000803f00000000000000000000803f0000003f00000000645d44be000000000000803f000000000000803f000000000000003f00000000645d443e000000000000803f000000000000803f0000803f
+    _typelessdata: 000000bf00000000ea5ab3be00000000ffff7f3f000000000000000000000000000000bf00000000ea5ab33e00000000ffff7f3f00000000000000000000803f0000003f00000000ea5ab3be00000000ffff7f3f000000000000803f000000000000003f00000000ea5ab33e00000000ffff7f3f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -5590,7 +5590,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ar_eraser_targetMaterial
+  m_Name: ar_image_target_2Material
   m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -5603,7 +5603,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 9f7ff52cb8f54b3abcc3bcb222fbb59a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6b1d9963cc5c4543a0f507084f457b3c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []

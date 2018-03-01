@@ -28,11 +28,14 @@ public class EventNames {
 	public class X01_Events {
 		public const string ON_FIRST_SCAN = "ON_FIRST_SCAN";
 		public const string ON_FINAL_SCAN = "ON_FINAL_SCAN";
+		public const string EXTENDED_TRACK_ON_SCAN = "EXTENDED_TRACK_ON_SCAN";
+		public const string EXTENDED_TRACK_REMOVED = "EXTENDED_TRACK_REMOVED";
 	}
 
 	public class X22_Events {
 		public const string ON_FIRST_SCAN = "ON_FIRST_SCAN";
 		public const string ON_FINAL_SCAN = "ON_FINAL_SCAN";
+		public const string EXTENDED_TRACK_ON_SCAN = "EXTENDED_TRACK_ON_SCAN";
 	}
 
 	public class S18_Events {
