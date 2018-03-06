@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class X01_HUDScreen : View {
+public class X01_HUDScreen : MonoBehaviour {
 
 	private bool targetScanned = false;
 	private bool targetHidden = false;
+
+	private bool hidden = false;
 
 	// Use this for initialization
 	void Start () {
@@ -38,5 +40,23 @@ public class X01_HUDScreen : View {
 			this.targetScanned = false;
 			this.gameObject.SetActive (false);
 		}
+	}
+
+	public void OnButtonSpawnClicked(int index) {
+		X01_ObjectManager.Instance.SetSelected (index);
+	}
+
+	public void OnToggleHideClicked() {
+		if (this.hidden) {
+			this.hidden = false;
+			EventBroadcaster.Instance.PostEvent (EventNames.ExtendTrackEvents.ON_SHOW_ALL);
+		} else {
+			this.hidden = true;
+			EventBroadcaster.Instance.PostEvent (EventNames.ExtendTrackEvents.ON_HIDE_ALL);
+		}
+	}
+
+	public void OnDeleteClicked() {
+		EventBroadcaster.Instance.PostEvent (EventNames.ExtendTrackEvents.ON_DELETE_ALL);
 	}
 }

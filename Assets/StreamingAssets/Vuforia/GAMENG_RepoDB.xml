@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="image_target_2-bw" size="1.000000 0.700606" />
     <ImageTarget name="ar_lenten_target" size="1.000000 0.615716" />
     <ImageTarget name="ar_eraser_target" size="1.000000 0.383525" />
     <ImageTarget name="ar_image_target_3" size="1.000000 0.700813" />
