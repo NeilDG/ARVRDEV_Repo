@@ -7,6 +7,8 @@ public class X22_HudScreen : MonoBehaviour {
 	private bool targetScanned = false;
 	private bool targetHidden = false;
 
+	private bool hidden = false;
+
 	// Use this for initialization
 	void Start () {
 		this.gameObject.SetActive (false);
@@ -39,5 +41,23 @@ public class X22_HudScreen : MonoBehaviour {
 			this.targetScanned = false;
 			this.gameObject.SetActive (false);
 		}
+	}
+
+	public void OnButtonClicked(int index) {
+		X22_ObjectManager.Instance.SetSelected (index);
+	}
+
+	public void OnToggleClicked() {
+		if (this.hidden) {
+			this.hidden = false;
+			EventBroadcaster.Instance.PostEvent (EventNames.ExtendTrackEvents.ON_SHOW_ALL);
+		} else {
+			this.hidden = true;
+			EventBroadcaster.Instance.PostEvent (EventNames.ExtendTrackEvents.ON_HIDE_ALL);
+		}
+	}
+
+	public void OnDeleteClicked() {
+		EventBroadcaster.Instance.PostEvent (EventNames.ExtendTrackEvents.ON_DELETE_ALL);
 	}
 }
