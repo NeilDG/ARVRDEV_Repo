@@ -1644,7 +1644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mName: vb_2
-  mSensitivity: 2
+  mSensitivity: 0
   mHasUpdatedPose: 1
   mPrevTransform:
     e00: 0.19999999
@@ -2370,7 +2370,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &534599304
 Transform:
   m_ObjectHideFlags: 0
@@ -3489,7 +3489,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &968382353
 Transform:
   m_ObjectHideFlags: 0
@@ -4617,7 +4617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mName: vb_3
-  mSensitivity: 2
+  mSensitivity: 0
   mHasUpdatedPose: 1
   mPrevTransform:
     e00: 0.19999999
@@ -4898,6 +4898,7 @@ GameObject:
   - component: {fileID: 1716123931}
   - component: {fileID: 1716123930}
   - component: {fileID: 1716123929}
+  - component: {fileID: 1716123935}
   m_Layer: 0
   m_Name: Target2
   m_TagString: Untagged
@@ -5008,6 +5009,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1716123935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1716123928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2d8b95ea81fe644996a68f7d65fd12d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectGroupList:
+  - {fileID: 2049557670}
+  - {fileID: 534599303}
+  - {fileID: 968382352}
+  buttonList:
+  - {fileID: 1841920047}
+  - {fileID: 326278272}
+  - {fileID: 1573510146}
 --- !u!1 &1717557144
 GameObject:
   m_ObjectHideFlags: 0
@@ -5363,7 +5383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mName: vb_1
-  mSensitivity: 2
+  mSensitivity: 0
   mHasUpdatedPose: 1
   mPrevTransform:
     e00: 0.2
@@ -5662,6 +5682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e48efb2768589c948ac71a9ef4020588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayText: {fileID: 959025102}
 --- !u!222 &2038461760
 CanvasRenderer:
   m_ObjectHideFlags: 0

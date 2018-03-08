@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class X01_HUDScreen : MonoBehaviour {
+
+	[SerializeField] private Text displayText;
 
 	private bool targetScanned = false;
 	private bool targetHidden = false;
@@ -12,6 +15,7 @@ public class X01_HUDScreen : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		this.gameObject.SetActive (false);
+		this.displayText.text = "Selected: Object " + 1;
 		EventBroadcaster.Instance.AddObserver (EventNames.X01_Events.EXTENDED_TRACK_ON_SCAN, this.OnTargetScan);
 		EventBroadcaster.Instance.AddObserver (EventNames.X01_Events.EXTENDED_TRACK_REMOVED, this.OnTargetHidden);
 	}
@@ -43,6 +47,7 @@ public class X01_HUDScreen : MonoBehaviour {
 	}
 
 	public void OnButtonSpawnClicked(int index) {
+		this.displayText.text = "Selected: Object " + (index + 1);
 		X01_ObjectManager.Instance.SetSelected (index);
 	}
 
