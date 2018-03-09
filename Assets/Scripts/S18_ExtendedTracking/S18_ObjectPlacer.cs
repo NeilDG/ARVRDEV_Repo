@@ -5,10 +5,19 @@ using UnityEngine;
 public class S18_ObjectPlacer : MonoBehaviour {
 	[SerializeField] private Camera arCamera;
 
+	private List<GameObject> spawnedObjects = new List<GameObject>();
 
 	// Use this for initialization
 	void Start () {
-		
+		EventBroadcaster.Instance.AddObserver (EventNames.ExtendTrackEvents.ON_SHOW_ALL, this.OnShowAll);
+		EventBroadcaster.Instance.AddObserver (EventNames.ExtendTrackEvents.ON_HIDE_ALL, this.OnHideAll);
+		EventBroadcaster.Instance.AddObserver (EventNames.ExtendTrackEvents.ON_DELETE_ALL, this.OnDestroyAll);
+	}
+
+	void OnDestroy() {
+		EventBroadcaster.Instance.RemoveObserver (EventNames.ExtendTrackEvents.ON_SHOW_ALL);
+		EventBroadcaster.Instance.RemoveObserver (EventNames.ExtendTrackEvents.ON_HIDE_ALL);
+		EventBroadcaster.Instance.RemoveObserver (EventNames.ExtendTrackEvents.ON_DELETE_ALL);
 	}
 	
 	// Update is called once per frame
@@ -27,7 +36,29 @@ public class S18_ObjectPlacer : MonoBehaviour {
 				GameObject spawnObject = GameObject.Instantiate (template, this.transform);
 				spawnObject.transform.position = hitPos;
 				spawnObject.SetActive (true);
+
+				this.spawnedObjects.Add (spawnObject);
 			}
 		}
+	}
+
+	private void OnHideAll() {
+		for (int i = 0; i < this.spawnedObjects.Count; i++) {
+			this.spawnedObjects [i].SetActive (false);
+		}
+	}
+
+	private void OnShowAll() {
+		for (int i = 0; i < this.spawnedObjects.Count; i++) {
+			this.spawnedObjects [i].SetActive (true);
+		}
+	}
+
+	private void OnDestroyAll() {
+		for (int i = 0; i < this.spawnedObjects.Count; i++) {
+			GameObject.Destroy (this.spawnedObjects [i]);
+		}
+
+		this.spawnedObjects.Clear ();
 	}
 }

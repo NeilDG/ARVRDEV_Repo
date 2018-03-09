@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class S18_HudScreen : MonoBehaviour {
 
+	private bool hidden = false;
+
 	// Use this for initialization
 	void Start () {
 		this.OnHideUI ();
@@ -36,5 +38,19 @@ public class S18_HudScreen : MonoBehaviour {
 
 	public void OnButtonClicked(int index) {
 		S18_ObjectManager.Instance.SetSelected (index);
+	}
+
+	public void OnToggleClicked() {
+		if (this.hidden) {
+			this.hidden = false;
+			EventBroadcaster.Instance.PostEvent (EventNames.ExtendTrackEvents.ON_SHOW_ALL);
+		} else {
+			this.hidden = true;
+			EventBroadcaster.Instance.PostEvent (EventNames.ExtendTrackEvents.ON_HIDE_ALL);
+		}
+	}
+
+	public void OnDestroyClicked() {
+		EventBroadcaster.Instance.PostEvent(EventNames.ExtendTrackEvents.ON_DELETE_ALL);
 	}
 }
