@@ -13,6 +13,7 @@ public class SceneNames {
 	public const string OCCLUSION_SCENE = "3DObjectScene";
 	public const string BAKED_LIGHTING_SCENE = "BakedLighting";
 	public const string VISUAL_EFFECTS_MENU_SCENE = "VisualEffectsMenuScene";
+	public const string BASIC_LIGHTING_SCENE = "BasicLighting";
 
 	//X01 scenes
 	public const string X01_MAIN_SCENE = "X01_MainMenu";
