@@ -232,7 +232,7 @@ Prefab:
     - target: {fileID: 224049162945089928, guid: 0c84334f0ffd302448af49ab1a98e7c5,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -35.725098
+      value: -36
       objectReference: {fileID: 0}
     - target: {fileID: 224839667849211516, guid: 0c84334f0ffd302448af49ab1a98e7c5,
         type: 2}
@@ -252,7 +252,7 @@ Prefab:
     - target: {fileID: 224839667849211516, guid: 0c84334f0ffd302448af49ab1a98e7c5,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -122.575
+      value: -101
       objectReference: {fileID: 0}
     - target: {fileID: 224505815226845292, guid: 0c84334f0ffd302448af49ab1a98e7c5,
         type: 2}
@@ -272,7 +272,7 @@ Prefab:
     - target: {fileID: 224505815226845292, guid: 0c84334f0ffd302448af49ab1a98e7c5,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -209.425
+      value: -166
       objectReference: {fileID: 0}
     - target: {fileID: 224525858223315062, guid: 0c84334f0ffd302448af49ab1a98e7c5,
         type: 2}
@@ -292,7 +292,27 @@ Prefab:
     - target: {fileID: 224525858223315062, guid: 0c84334f0ffd302448af49ab1a98e7c5,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -296.275
+      value: -231
+      objectReference: {fileID: 0}
+    - target: {fileID: 224911752061500788, guid: 0c84334f0ffd302448af49ab1a98e7c5,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224911752061500788, guid: 0c84334f0ffd302448af49ab1a98e7c5,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224911752061500788, guid: 0c84334f0ffd302448af49ab1a98e7c5,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 334
+      objectReference: {fileID: 0}
+    - target: {fileID: 224911752061500788, guid: 0c84334f0ffd302448af49ab1a98e7c5,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -296
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0c84334f0ffd302448af49ab1a98e7c5, type: 2}
@@ -494,7 +514,6 @@ GameObject:
   - component: {fileID: 1478631617}
   - component: {fileID: 1478631616}
   - component: {fileID: 1478631615}
-  - component: {fileID: 1478631614}
   - component: {fileID: 1478631618}
   m_Layer: 0
   m_Name: Main Camera
@@ -503,13 +522,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1478631614
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1478631613}
-  m_Enabled: 1
 --- !u!124 &1478631615
 Behaviour:
   m_ObjectHideFlags: 0

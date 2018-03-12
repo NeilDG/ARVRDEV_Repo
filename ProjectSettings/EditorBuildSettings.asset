@@ -35,3 +35,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Workspaces/X22_ExtendedTracking.unity
     guid: 401412f0d35b6af4493ab43feff5378e
+  - enabled: 1
+    path: Assets/Scenes/BakedLighting.unity
+    guid: 67d6643e7308e644cbe98f2b25250b1a
+  - enabled: 1
+    path: Assets/Scenes/VisualEffectsMenuScene.unity
+    guid: 5740993e5aec5a84b82c47908697e8d1
