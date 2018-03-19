@@ -44,3 +44,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BasicLightingScene.unity
     guid: 5931a897a8334194d8e3a26ca4d9a654
+  - enabled: 1
+    path: Assets/Scenes/RealtimeLighting.unity
+    guid: 1d76e0de8d39a274abddf465eb481b7d

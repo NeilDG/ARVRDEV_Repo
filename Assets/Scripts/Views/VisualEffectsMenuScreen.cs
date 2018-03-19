@@ -24,10 +24,14 @@ public class VisualEffectsMenuScreen : View {
 		}
 
 		if (index == 2) {
-			LoadManager.Instance.LoadScene (SceneNames.BAKED_LIGHTING_SCENE);
+			LoadManager.Instance.LoadScene (SceneNames.REALTIME_LIGHTING_SCENE);
 		}
 
 		if (index == 3) {
+			LoadManager.Instance.LoadScene (SceneNames.BAKED_LIGHTING_SCENE);
+		}
+
+		if (index == 4) {
 			LoadManager.Instance.LoadScene (SceneNames.MAIN_SCENE);
 		}
 	}
