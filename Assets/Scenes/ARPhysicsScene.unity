@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 168213946}
   - component: {fileID: 168213945}
   - component: {fileID: 168213944}
+  - component: {fileID: 168213949}
   m_Layer: 0
   m_Name: ARCamera
   m_TagString: Untagged
@@ -257,7 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mWorldCenterMode: 0
-  mWorldCenter: {fileID: 1600892545}
+  mWorldCenter: {fileID: 0}
 --- !u!81 &168213946
 AudioListener:
   m_ObjectHideFlags: 0
@@ -283,7 +284,7 @@ Camera:
     height: 1
   near clip plane: 0.05
   far clip plane: 2000
-  field of view: 60
+  field of view: 80
   orthographic: 0
   orthographic size: 5
   m_Depth: 1
@@ -314,6 +315,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &168213949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 168213943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba923813a62d2c44ba727d9773428b56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &169396661
 Prefab:
   m_ObjectHideFlags: 0
@@ -5041,8 +5053,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa83962ff9df0cf4da029d196aaec909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayMsg: Align your camera with the image centered in your screen. Tilt your
-    device to demonstrate the physics.
 --- !u!1 &1013497922
 GameObject:
   m_ObjectHideFlags: 0
@@ -5334,7 +5344,7 @@ MonoBehaviour:
   mShowBoundingBox: 1
   mBBoxMin: {x: 0, y: 0, z: 0}
   mBBoxMax: {x: 0.1, y: 0.1, z: 0.1}
-  mPreviewImage: {fileID: 2800000, guid: 102cfe37ca174398ab4ef5fe465a1b85, type: 3}
+  mPreviewImage: {fileID: 2800000, guid: 1c0b3fecd90e485fafdac5eee5190099, type: 3}
   mLength: 1
   mWidth: 1
   mHeight: 1
@@ -5374,7 +5384,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.5, y: 0, z: 0.3504065}
+      m_Extent: {x: 0.5, y: 0, z: 0.350303}
   m_Shapes:
     vertices: []
     shapes: []
@@ -5427,7 +5437,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: 000000bf000000007b68b3be000000000000803f000000000000000000000000000000bf000000007b68b33e000000000000803f00000000000000000000803f0000003f000000007b68b3be000000000000803f000000000000803f000000000000003f000000007b68b33e000000000000803f000000000000803f0000803f
+    _typelessdata: 000000bf00000000ea5ab3be00000000ffff7f3f000000000000000000000000000000bf00000000ea5ab33e00000000ffff7f3f00000000000000000000803f0000003f00000000ea5ab3be00000000ffff7f3f000000000000803f000000000000003f00000000ea5ab33e00000000ffff7f3f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -5559,7 +5569,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ar_image_target_3Material
+  m_Name: ar_image_target_1Material
   m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -5572,7 +5582,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 49d553a7cee241819b3c64cbba198b13, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0921d1872dbd44069d50501140e5e995, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []
@@ -5672,15 +5682,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9182b067a5aa4fa4ea24441d8efedfe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: ar_image_target_3
-  mPreserveChildSize: 0
-  mInitializedInEditor: 1
-  mDataSetPath: Vuforia/GAMENG_RepoDB.xml
-  mExtendedTracking: 0
-  mAspectRatio: 0.700813
-  mImageTargetType: 0
-  mWidth: 1
-  mHeight: 0.700813
 --- !u!4 &1600892546
 Transform:
   m_ObjectHideFlags: 0
