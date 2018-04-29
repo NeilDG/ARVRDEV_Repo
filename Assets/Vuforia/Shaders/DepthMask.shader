@@ -27,7 +27,7 @@ Shader "DepthMask" {
         // Draw into the depth buffer in the usual way.  This is probably the default,
         // but it doesn't hurt to be explicit.
 
-        ZTest Always
+        ZTest LEqual
         ZWrite On
 
         // Don't draw anything into the RGBA channels. This is an undocumented

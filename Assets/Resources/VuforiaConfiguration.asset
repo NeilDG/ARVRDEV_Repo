@@ -8,18 +8,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -2067402452, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
+  m_Script: {fileID: -2067402452, guid: 8a9a760f95896c34689febc965510927, type: 3}
   m_Name: VuforiaConfiguration
   m_EditorClassIdentifier: 
   vuforia:
     vuforiaLicenseKey: AT221Tb/////AAAAGZxhijcKCkdVkM4vG1WkHxQmxgeEkLpjS7PKR/fZU0lYBC53iTvtBr+IvkAScBvu4EvAeCuZctuT6X5fuvWAdCQQHRWDek+JzksIdlGOMrcWyhp0wbOwqOblBQEA/P6WEsdThmK3LlwSn7SUwCaF+BVC7dpNIQE17Eg7G5fKwu5Hk/+EaOgB3HdDFcR/JQZNCvhM9y3k8RIrEUbMrNUX0pufEXXLcNHa0B9Bcbr6J6bEg4GNP6oiDj0LDH9YCCoP3KIXUfB9riuhBVx+pZf6Bcng+dtiLUATAgPjUoWMezvBRlWnFO1m6qpSLRQL/7lB6qhE6DE5Zso0XxNQ1zMAZjnsnNis6wm8TKHXxkLOQC7w
-    ufoLicenseKey: QWJGYVVlZi8vLy8vQUFBQUtQRU5MQmtPeDBPQW1UL3hpTVg0RHY0K1Z6dHQwQ3pLSWhUN2RiMkdlWVVVMGJ0WUNiY3E1dUd0R0Z3aWhBS21XSXZ4OEp3d3hzZkFub1V1c0Q3dmNDeVlXbW1UbVk5VStmNjlISGpwV1YzaGZnTjZZaE53M0NJdi90N2toa2owaDV4Q3JITnMvV3BJZ3FWVXFIcjJhZkN3YTNORmJ3aDhCZVZWNXFacnBFbWJuSHVrYWhnazRYSnFsczJmVlB0UFFBQm5pQythdXJiQWhmWFJPQ2pZT3VmS3M1bm1TazZJODBMZGRkbFBma1Z2OEFxK2JzcU9qN00xKzJRUzdTWThNdW8zSmFZR2JyaVA0bCtpaEl1cEdLeHZCUVVJZytDYjV0OUwveFNJN1NOUldGbHErRVdlVXo3MkpMSGZtd2JUemRTRUM1SG9HWFp5WUdtbFJaNVFYNlNIK1Y2SS81ZGp2UzRQbHdhMkdJdU4=
+    ufoLicenseKey: QVpNK2lSci8vLy8vQUFBQUtMZzhvRUdNbEVvbnJQR0ZKTS8xUERGcndVdEhZbTdVREczODY1cUhEc0s1WEsxL1JiQ2RLRlR2YXJJNVJOL0NPNXRON1FzbHRkWU5zdXgxeHpLRWU5M2cxbHNIRUtIU1dPend4a0kydzJiTi8xVWxxditaU1ZTT2wwTEJHdElUMS8xcnR4cDNMTCtTS3phaDU2Vk9IOHpBUUxHbStlY1EwMFhSbHQvNzdhbldhUk1oRDJhcUtlcld1d3hzYzJDY1dmQTIrMExBdU4xejUyd1FTZTBRcnJVaS9ObWhPTGxHL3F6TkI3b2t3MXZoQnpOZzlVVmJWOS9VT1JGT0JCWEVKcy9BV1FQZDZnSTNYZVYvdm1ldVpTNzg5cUtOSnhlODlQc3YxcnVLVHRrdWY2L3B5eTJ5eGx2V20rRWZ2UmliUDk1ZHY3R0N1azFJZTlQbmFwZkxVK0YxYUhvYmlwQW9MZE1KclNpZnQvcjA=
     delayedInitialization: 0
     cameraDeviceModeSetting: -1
-    maxSimultaneousImageTargets: 3
-    maxSimultaneousObjectTargets: 3
+    maxSimultaneousImageTargets: 4
+    maxSimultaneousObjectTargets: 1
     useDelayedLoadingObjectTargets: 0
-    cameraDirection: 0
+    cameraDirection: 1
     mirrorVideoBackground: 0
   digitalEyewear:
     cameraOffset: 0.06
@@ -45,15 +45,13 @@ MonoBehaviour:
   databaseLoad:
     dataSetsToLoad:
     - VuforiaMars_Images
-    - VuforiaMars_VuMark
-    - GAMENG_RepoDB
     - GAMENG_RepoDB_OT
     - DefaultDB
+    - GAMENG_RepoDB
     dataSetsToActivate:
     - VuforiaMars_Images
-    - VuforiaMars_VuMark
-    - GAMENG_RepoDB
     - GAMENG_RepoDB_OT
+    - GAMENG_RepoDB
     - DefaultDB
   videoBackground:
     clippingMode: 0
@@ -74,7 +72,7 @@ MonoBehaviour:
     autoInitTracker: 0
     autoStartTracker: 0
   webcam:
-    deviceNameSetInEditor: A4tech USB2.0 Camera
+    deviceNameSetInEditor: Logitech Camera
     flipHorizontally: 0
     turnOffWebCam: 0
     renderTextureLayer: 30

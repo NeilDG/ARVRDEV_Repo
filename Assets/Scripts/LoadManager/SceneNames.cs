@@ -15,6 +15,7 @@ public class SceneNames {
 	public const string VISUAL_EFFECTS_MENU_SCENE = "VisualEffectsMenuScene";
 	public const string BASIC_LIGHTING_SCENE = "BasicLighting";
 	public const string REALTIME_LIGHTING_SCENE = "RealtimeLighting";
+	public const string USER_DEFINED_TARGET_SCENE = "3-UserDefinedTargets";
 
 	//X01 scenes
 	public const string X01_MAIN_SCENE = "X01_MainMenu";

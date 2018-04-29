@@ -29,6 +29,10 @@ public class MainMenuScreen : View {
 		LoadManager.Instance.LoadScene (SceneNames.VISUAL_EFFECTS_MENU_SCENE);
 	}
 
+	public void OnUserDefinedTargetsClicked() {
+		LoadManager.Instance.LoadScene (SceneNames.USER_DEFINED_TARGET_SCENE);
+	}
+
 	public override void OnRootScreenBack ()
 	{
 		DialogInterface dialog = DialogBuilder.Create (DialogBuilder.DialogType.CHOICE_DIALOG);
