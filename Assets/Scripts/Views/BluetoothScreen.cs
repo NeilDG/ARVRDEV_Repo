@@ -13,6 +13,7 @@ public class BluetoothScreen : View {
 	void Start () {
 		AndroidBluetoothMultiplayer.DeviceDiscovered += this.OnDeviceDiscovered;
 		AndroidBluetoothMultiplayer.ClientConnected += this.OnClientConnected;
+		AndroidBluetoothMultiplayer.DevicePicked += this.OnDevicePicked;
 		this.deviceDisplay.gameObject.SetActive (false);
 
 		this.bluetoothBtn.enabled = !ARNetworkManager.Instance.IsBluetoothEnabled ();
@@ -61,5 +62,10 @@ public class BluetoothScreen : View {
 
 	private void OnClientConnected(BluetoothDevice device) {
 		ConsoleManager.LogMessage ("Device connected! " + device.Name);
+	}
+
+	private void OnDevicePicked(BluetoothDevice device) {
+		ConsoleManager.LogMessage ("Device picked: " + device.Name);
+		ARNetworkManager.Instance.AttemptConnect (device);
 	}
 }
