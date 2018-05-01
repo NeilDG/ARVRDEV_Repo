@@ -6,7 +6,6 @@ public class MainMenuScreen : View {
 
 	// Use this for initialization
 	void Start () {
-		
 	}
 
 	public void On3DImageClicked() {
@@ -31,6 +30,10 @@ public class MainMenuScreen : View {
 
 	public void OnUserDefinedTargetsClicked() {
 		LoadManager.Instance.LoadScene (SceneNames.USER_DEFINED_TARGET_SCENE);
+	}
+
+	public void OnBluetoothDemoClicked() {
+
 	}
 
 	public override void OnRootScreenBack ()
