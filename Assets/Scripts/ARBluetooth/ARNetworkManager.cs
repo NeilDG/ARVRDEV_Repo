@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using LostPolygon.AndroidBluetoothMultiplayer;
+using UnityEngine.Networking;
 
 public class ARNetworkManager : MonoBehaviour {
 
@@ -15,6 +16,7 @@ public class ARNetworkManager : MonoBehaviour {
 	public const string UUID = "5acee51c-76c4-425d-9c22-25e08fab14da";
 
 	[SerializeField] private AndroidBluetoothNetworkManagerHelper bluetoothHelper;
+	[SerializeField] private NetworkManager uNetManager;
 
 
 	void Awake() {
@@ -30,9 +32,32 @@ public class ARNetworkManager : MonoBehaviour {
 		return this.bluetoothHelper;
 	}
 
-	public void InitializeBluetooth() {
-		if (AndroidBluetoothMultiplayer.RequestEnableBluetooth()) {
+	public void EnableBluetooth() {
+		if (AndroidBluetoothMultiplayer.GetIsBluetoothEnabled ()) {
+			ConsoleManager.LogMessage ("Bluetooth already enabled.");
+		} else {
+			if (AndroidBluetoothMultiplayer.RequestEnableBluetooth ()) {
+				ConsoleManager.LogMessage ("Attempting to initialize bluetooth");
+			}
 		}
+	}
+
+	public bool IsBluetoothEnabled() {
+		return AndroidBluetoothMultiplayer.GetIsBluetoothEnabled ();
+	}
+
+	public void StartAsHost() {
+		bool result = AndroidBluetoothMultiplayer.StartServer((ushort) this.uNetManager.networkPort);
+		if (result) {
+			ConsoleManager.LogMessage ("Successfully started bluetooth host at " + this.uNetManager.networkAddress + " port " + this.uNetManager.networkPort);
+		} else {
+			ConsoleManager.LogMessage ("Failed to start bluetooth host.");
+		}
+	}
+
+	public void StartAsClient() {
+		ConsoleManager.LogMessage ("Attempting to start as client");
+		this.bluetoothHelper.StartClient ();
 	}
 
 	public void StartScan() {

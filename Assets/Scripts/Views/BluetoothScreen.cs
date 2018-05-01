@@ -7,25 +7,20 @@ using LostPolygon.AndroidBluetoothMultiplayer;
 public class BluetoothScreen : View {
 
 	[SerializeField] private Text deviceDisplay;
+	[SerializeField] private Button bluetoothBtn;
 
 	// Use this for initialization
 	void Start () {
 		AndroidBluetoothMultiplayer.DeviceDiscovered += this.OnDeviceDiscovered;
+		AndroidBluetoothMultiplayer.ClientConnected += this.OnClientConnected;
 		this.deviceDisplay.gameObject.SetActive (false);
+
+		this.bluetoothBtn.enabled = !ARNetworkManager.Instance.IsBluetoothEnabled ();
 	}
 
 	// Update is called once per frame
 	void Update () {
 		
-	}
-
-	public void OnStartServerButton() {
-		ConsoleManager.LogMessage ("Attempting to start server");
-		ARNetworkManager.Instance.InitializeBluetooth ();
-	}
-
-	public void OnStartScan() {
-		ARNetworkManager.Instance.StartScan ();
 	}
 
 	public override void OnRootScreenBack ()
@@ -37,10 +32,34 @@ public class BluetoothScreen : View {
 		});
 	}
 
+	public void OnEnableBluetoothButton() {
+		ARNetworkManager.Instance.EnableBluetooth ();
+	}
+
+	public void OnStartServerButton() {
+		ARNetworkManager.Instance.StartAsHost ();
+	}
+
+	public void OnStartScan() {
+		ARNetworkManager.Instance.StartScan ();
+	}
+
+	public void OnStartClientButton() {
+		ARNetworkManager.Instance.StartAsClient ();
+	}
+
+	///
+	/// Delegate methods
+	///
+
 	private void OnDeviceDiscovered(BluetoothDevice device) {
 		ConsoleManager.LogMessage ("Device discovered! " + device.Name);
 		Text displayText = GameObject.Instantiate (this.deviceDisplay, this.deviceDisplay.transform.parent);
 		displayText.gameObject.SetActive (true);
 		displayText.text = device.Name;
+	}
+
+	private void OnClientConnected(BluetoothDevice device) {
+		ConsoleManager.LogMessage ("Device connected! " + device.Name);
 	}
 }
