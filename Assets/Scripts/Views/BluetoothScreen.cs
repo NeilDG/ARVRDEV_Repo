@@ -6,17 +6,37 @@ using LostPolygon.AndroidBluetoothMultiplayer;
 
 public class BluetoothScreen : View {
 
+	[Header("Panel Displays")]
+	[SerializeField] private GameObject mainPanel;
+	[SerializeField] private GameObject hiddenPanel;
+
+	[Header("UI Elements")]
 	[SerializeField] private Text deviceDisplay;
 	[SerializeField] private Button bluetoothBtn;
+	[SerializeField] private Button gameBtn;
 
 	// Use this for initialization
 	void Start () {
 		AndroidBluetoothMultiplayer.DeviceDiscovered += this.OnDeviceDiscovered;
 		AndroidBluetoothMultiplayer.ClientConnected += this.OnClientConnected;
+		AndroidBluetoothMultiplayer.ClientDisconnected += this.OnClientDisconnected;
+		AndroidBluetoothMultiplayer.ConnectedToServer += this.OnServerConnected;
+		AndroidBluetoothMultiplayer.DisconnectedFromServer += this.OnServerDisconnected;
 		AndroidBluetoothMultiplayer.DevicePicked += this.OnDevicePicked;
 		this.deviceDisplay.gameObject.SetActive (false);
+		this.gameBtn.gameObject.SetActive (false);
+		this.ShowMainPanel ();
 
 		this.bluetoothBtn.enabled = !ARNetworkManager.Instance.IsBluetoothEnabled ();
+	}
+
+	void OnDestroy() {
+		AndroidBluetoothMultiplayer.DeviceDiscovered -= this.OnDeviceDiscovered;
+		AndroidBluetoothMultiplayer.ClientConnected -= this.OnClientConnected;
+		AndroidBluetoothMultiplayer.ClientDisconnected -= this.OnClientDisconnected;
+		AndroidBluetoothMultiplayer.ConnectedToServer -= this.OnServerConnected;
+		AndroidBluetoothMultiplayer.DisconnectedFromServer -= this.OnServerDisconnected;
+		AndroidBluetoothMultiplayer.DevicePicked -= this.OnDevicePicked;
 	}
 
 	// Update is called once per frame
@@ -49,10 +69,23 @@ public class BluetoothScreen : View {
 		ARNetworkManager.Instance.StartAsClient ();
 	}
 
-	///
-	/// Delegate methods
-	///
+	public void OnProceedToGame() {
+		this.HideMainPanel ();
+	}
 
+	public void HideMainPanel() {
+		this.mainPanel.gameObject.SetActive (false);
+		this.hiddenPanel.gameObject.SetActive (true);
+	}
+
+	public void ShowMainPanel() {
+		this.mainPanel.gameObject.SetActive (true);
+		this.hiddenPanel.gameObject.SetActive (false);
+	}
+
+	///
+	/// Bluetooth delegate methods
+	///
 	private void OnDeviceDiscovered(BluetoothDevice device) {
 		ConsoleManager.LogMessage ("Device discovered! " + device.Name);
 		Text displayText = GameObject.Instantiate (this.deviceDisplay, this.deviceDisplay.transform.parent);
@@ -61,7 +94,21 @@ public class BluetoothScreen : View {
 	}
 
 	private void OnClientConnected(BluetoothDevice device) {
-		ConsoleManager.LogMessage ("Device connected! " + device.Name);
+		ConsoleManager.LogMessage ("Device connected: " + device.Name);
+		this.gameBtn.gameObject.SetActive (true);
+	}
+
+	private void OnClientDisconnected(BluetoothDevice device) {
+		ConsoleManager.LogMessage ("Device disconnected: " + device.Name);
+	}
+
+	private void OnServerConnected(BluetoothDevice device) {
+		ConsoleManager.LogMessage ("Successfully connected to device " + device.Name);
+		this.gameBtn.gameObject.SetActive (true);
+	}
+
+	private void OnServerDisconnected(BluetoothDevice device) {
+		ConsoleManager.LogMessage ("Disconnected from device " + device.Name);
 	}
 
 	private void OnDevicePicked(BluetoothDevice device) {
