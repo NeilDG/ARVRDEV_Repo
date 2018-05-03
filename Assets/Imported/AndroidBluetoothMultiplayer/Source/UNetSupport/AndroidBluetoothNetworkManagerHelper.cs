@@ -24,10 +24,10 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
         protected BluetoothNetworkManagerSettings _bluetoothNetworkManagerSettings = new BluetoothNetworkManagerSettings();
 
 #if UNITY_ANDROID
-        private bool _isInitialized;
-        private BluetoothMultiplayerMode _desiredMode = BluetoothMultiplayerMode.None;
-        private Action _clientAction;
-        private Action _hostAction;
+        protected bool _isInitialized;
+		protected BluetoothMultiplayerMode _desiredMode = BluetoothMultiplayerMode.None;
+		protected Action _clientAction;
+		protected Action _hostAction;
 
         /// <summary>
         /// A custom Bluetooth device browser can be used instead of native Android one.
@@ -300,7 +300,7 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
 #endif
         }
 
-        private void StartBluetoothHost(Action onReadyAction) {
+        protected virtual void StartBluetoothHost(Action onReadyAction) {
 #if !UNITY_EDITOR
             _hostAction = onReadyAction;
 
@@ -319,7 +319,7 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
 #endif
         }
 
-        private void StopAll() {
+		protected void StopAll() {
            AndroidBluetoothMultiplayer.Stop();
             _networkManager.StopHost();
         }

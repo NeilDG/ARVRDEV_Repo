@@ -66,6 +66,5 @@ public class BluetoothScreen : View {
 
 	private void OnDevicePicked(BluetoothDevice device) {
 		ConsoleManager.LogMessage ("Device picked: " + device.Name);
-		ARNetworkManager.Instance.AttemptConnect (device);
 	}
 }
