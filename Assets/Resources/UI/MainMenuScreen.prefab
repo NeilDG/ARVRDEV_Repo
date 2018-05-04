@@ -57,12 +57,12 @@ GameObject:
   - component: {fileID: 114141786635483456}
   - component: {fileID: 114501359110714212}
   m_Layer: 5
-  m_Name: VisualEffectsBtn
+  m_Name: Bluetooth AR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1328826295669782
 GameObject:
   m_ObjectHideFlags: 1
@@ -740,7 +740,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114113354668782122}
-        m_MethodName: OnVisualEffectsClicked
+        m_MethodName: OnBluetoothDemoClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -784,9 +784,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Visual Effects Demo
-
-'
+  m_Text: Bluetooth AR Demo
 --- !u!114 &114597960417338026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -804,7 +802,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 25
+  m_Spacing: 15
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -1428,9 +1426,9 @@ RectTransform:
   m_Father: {fileID: 224087591196753176}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 334, y: -296}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 534.1, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224977572046948520
