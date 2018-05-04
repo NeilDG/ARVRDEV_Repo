@@ -33,7 +33,7 @@ public class MainMenuScreen : View {
 	}
 
 	public void OnBluetoothDemoClicked() {
-
+		LoadManager.Instance.LoadScene (SceneNames.BLUETOOTH_AR_SCENE);
 	}
 
 	public override void OnRootScreenBack ()

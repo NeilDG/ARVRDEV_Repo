@@ -1,0 +1,2 @@
+adb -s J3AXB7628745M7W install gameng_ar_00.00.01.apk  <-- Asus Zenfone 5
+adb -s 138c758d install gameng_ar_00.00.01.apk  <-- Lenovo Phab 2 Pro

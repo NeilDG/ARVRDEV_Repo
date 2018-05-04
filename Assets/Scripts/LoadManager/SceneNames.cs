@@ -16,6 +16,7 @@ public class SceneNames {
 	public const string BASIC_LIGHTING_SCENE = "BasicLighting";
 	public const string REALTIME_LIGHTING_SCENE = "RealtimeLighting";
 	public const string USER_DEFINED_TARGET_SCENE = "3-UserDefinedTargets";
+	public const string BLUETOOTH_AR_SCENE = "BluetoothARScene";
 
 	//X01 scenes
 	public const string X01_MAIN_SCENE = "X01_MainMenu";
