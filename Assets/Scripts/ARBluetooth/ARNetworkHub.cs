@@ -4,16 +4,15 @@ using UnityEngine;
 using LostPolygon.AndroidBluetoothMultiplayer;
 using UnityEngine.Networking;
 
-public class ARNetworkManager : MonoBehaviour {
+public class ARNetworkHub : MonoBehaviour {
 
-	private static ARNetworkManager sharedInstance = null;
-	public static ARNetworkManager Instance {
+	private static ARNetworkHub sharedInstance = null;
+	public static ARNetworkHub Instance {
 		get {
 			return sharedInstance;
 		}
 	}
 
-	public const string UUID = "5acee51c-76c4-425d-9c22-25e08fab14da";
 
 	[SerializeField] private ARNetworkManagerHelper bluetoothHelper;
 
@@ -21,7 +20,6 @@ public class ARNetworkManager : MonoBehaviour {
 
 	void Awake() {
 		sharedInstance = this;
-		AndroidBluetoothMultiplayer.Initialize (UUID);
 	}
 
 	void OnDestroy() {
@@ -50,12 +48,6 @@ public class ARNetworkManager : MonoBehaviour {
 		this.isServer = true;
 		this.bluetoothHelper.StartServer ();
 		ConsoleManager.LogMessage ("Attempting to start as server");
-		/*bool result = AndroidBluetoothMultiplayer.StartServer((ushort) this.uNetManager.networkPort);
-		if (result) {
-			ConsoleManager.LogMessage ("Successfully started bluetooth host at " + this.uNetManager.networkAddress + " port " + this.uNetManager.networkPort);
-		} else {
-			ConsoleManager.LogMessage ("Failed to start bluetooth host.");
-		}*/
 	}
 
 	public void StartAsClient() {
@@ -72,12 +64,4 @@ public class ARNetworkManager : MonoBehaviour {
 		AndroidBluetoothMultiplayer.StartDiscovery ();
 		ConsoleManager.LogMessage("Started discovery");
 	}
-
-	/*public void AttemptConnect(BluetoothDevice device) {
-		if (AndroidBluetoothMultiplayer.Connect (device.Address, (ushort)this.uNetManager.networkPort)) {
-			ConsoleManager.LogMessage ("Successfully connected to device " +device.Name);
-		} else {
-			ConsoleManager.LogMessage ("Cannot connect to device " +device.Name);
-		}
-	}*/
 }

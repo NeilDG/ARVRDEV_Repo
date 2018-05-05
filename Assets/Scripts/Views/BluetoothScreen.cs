@@ -27,7 +27,7 @@ public class BluetoothScreen : View {
 		this.gameBtn.gameObject.SetActive (false);
 		this.ShowMainPanel ();
 
-		this.bluetoothBtn.enabled = !ARNetworkManager.Instance.IsBluetoothEnabled ();
+		this.bluetoothBtn.enabled = !ARNetworkHub.Instance.IsBluetoothEnabled ();
 	}
 
 	void OnDestroy() {
@@ -54,23 +54,25 @@ public class BluetoothScreen : View {
 	}
 
 	public void OnEnableBluetoothButton() {
-		ARNetworkManager.Instance.EnableBluetooth ();
+		ARNetworkHub.Instance.EnableBluetooth ();
 	}
 
 	public void OnStartServerButton() {
-		ARNetworkManager.Instance.StartAsHost ();
+		ARNetworkHub.Instance.StartAsHost ();
 	}
 
 	public void OnStartScan() {
-		ARNetworkManager.Instance.StartScan ();
+		ARNetworkHub.Instance.StartScan ();
 	}
 
 	public void OnStartClientButton() {
-		ARNetworkManager.Instance.StartAsClient ();
+		ARNetworkHub.Instance.StartAsClient ();
 	}
 
 	public void OnProceedToGame() {
 		this.HideMainPanel ();
+
+		//NetworkServer.RegisterHandler (ARCanvasSpace.ARMessage.messageType, this.OnReceivedClientMessage);
 	}
 
 	public void HideMainPanel() {

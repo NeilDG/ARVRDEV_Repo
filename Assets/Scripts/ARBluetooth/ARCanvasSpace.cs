@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 /// <summary>
 /// Simple script that allows movement of an object through tap.
@@ -28,7 +29,16 @@ public class ARCanvasSpace : MonoBehaviour {
 			RaycastHit hit;
 			if (Physics.Raycast (ray, out hit)) {
 				this.destination = new Vector3 (hit.point.x, moveableObject.transform.position.y, hit.point.z);
-				Debug.Log ("Destination: " + destination);
+
+				ARMessage arMsg = new ARMessage ();
+				arMsg.SetDestination (this.destination);
+				if (NetworkManager.singleton.client != null) {
+					NetworkManager.singleton.client.Send (ARMessage.messageType, arMsg);
+					ConsoleManager.LogMessage ("Attempting to send destination: " + destination);
+				} else {
+					ConsoleManager.LogMessage ("Cannot send destination because client was not found.");
+				}
+
 
 				this.moving = true;
 			}
@@ -43,6 +53,24 @@ public class ARCanvasSpace : MonoBehaviour {
 				this.moving = false;
 			}
 
+		}
+	}
+
+	public class ARMessage: MessageBase {
+		public const short messageType = 12345;
+
+		private Vector3 destination;
+
+		public ARMessage() {
+
+		}
+
+		public void SetDestination(Vector3 destination) {
+			this.destination = destination;
+		}
+
+		public Vector3 GetDestination() {
+			return this.destination;
 		}
 	}
 }
