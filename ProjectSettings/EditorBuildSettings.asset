@@ -5,25 +5,25 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainMenuScene.unity
     guid: 571d1ba7027f37748b3829c80d330f46
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ARPhysicsScene.unity
     guid: 7b04cb6372a34e54696b4a53f9ae0d03
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ARExtendedTrackingScene.unity
     guid: 8baba12000e09814288ca66e01e43f59
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/3DObjectScene.unity
     guid: 63da5560b13fe674d8ce7470ca80d655
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/RotateObjectScene.unity
     guid: 4416d08e6f214414ead749567c9b876b
   - enabled: 0
     path: Assets/Scenes/UserDefinedTargetScene.unity
     guid: eb272d864c30f22478c5e69e3c50a941
-  - enabled: 1
+  - enabled: 0
     path: Assets/SamplesResources/Scenes/3-UserDefinedTargets.unity
     guid: 89ed636faaaf34959983482a021ac4e6
   - enabled: 1
