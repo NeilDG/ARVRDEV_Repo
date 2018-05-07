@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -282,9 +282,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 438841779}
-  - component: {fileID: 438841777}
   - component: {fileID: 438841778}
   - component: {fileID: 438841780}
+  - component: {fileID: 438841777}
   m_Layer: 0
   m_Name: NetworkHandler
   m_TagString: Untagged
@@ -605,7 +605,7 @@ Prefab:
     - target: {fileID: 224251820939527490, guid: cc299ce66aa99dc4498e97e51731b956,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0.99630845
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224247903411859990, guid: cc299ce66aa99dc4498e97e51731b956,
         type: 2}
@@ -620,7 +620,7 @@ Prefab:
     - target: {fileID: 224247903411859990, guid: cc299ce66aa99dc4498e97e51731b956,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 210.9
+      value: 203.75
       objectReference: {fileID: 0}
     - target: {fileID: 224247903411859990, guid: cc299ce66aa99dc4498e97e51731b956,
         type: 2}
@@ -629,8 +629,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 224780980805615072, guid: cc299ce66aa99dc4498e97e51731b956,
         type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.010268292
+      propertyPath: m_SizeDelta.y
+      value: 30.88
       objectReference: {fileID: 0}
     - target: {fileID: 1718319648244288, guid: cc299ce66aa99dc4498e97e51731b956, type: 2}
       propertyPath: m_IsActive

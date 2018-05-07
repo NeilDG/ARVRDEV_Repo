@@ -72,7 +72,7 @@ public class BluetoothScreen : View {
 	public void OnProceedToGame() {
 		this.HideMainPanel ();
 
-		//NetworkServer.RegisterHandler (ARCanvasSpace.ARMessage.messageType, this.OnReceivedClientMessage);
+		ARNetworkHub.Instance.RegisterNetworkEvents ();
 	}
 
 	public void HideMainPanel() {

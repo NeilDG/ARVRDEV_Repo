@@ -32,12 +32,18 @@ public class ARCanvasSpace : MonoBehaviour {
 
 				ARMessage arMsg = new ARMessage ();
 				arMsg.SetDestination (this.destination);
-				if (NetworkManager.singleton.client != null) {
+				NetworkServer.SendToAll (ARMessage.messageType, arMsg);
+				ConsoleManager.LogMessage ("Attempting to send destination: " + destination);
+				/*foreach (NetworkClient client in NetworkClient.allClients) {
+					client.Send (ARMessage.messageType, arMsg);
+					ConsoleManager.LogMessage ("Attempting to send destination: " + destination+ " to " +client.connection.address);
+				}*/
+				/*if (NetworkManager.singleton.client != null) {
 					NetworkManager.singleton.client.Send (ARMessage.messageType, arMsg);
 					ConsoleManager.LogMessage ("Attempting to send destination: " + destination);
 				} else {
 					ConsoleManager.LogMessage ("Cannot send destination because client was not found.");
-				}
+				}*/
 
 
 				this.moving = true;
@@ -53,24 +59,6 @@ public class ARCanvasSpace : MonoBehaviour {
 				this.moving = false;
 			}
 
-		}
-	}
-
-	public class ARMessage: MessageBase {
-		public const short messageType = 12345;
-
-		private Vector3 destination;
-
-		public ARMessage() {
-
-		}
-
-		public void SetDestination(Vector3 destination) {
-			this.destination = destination;
-		}
-
-		public Vector3 GetDestination() {
-			return this.destination;
 		}
 	}
 }

@@ -20,8 +20,7 @@ public class ARServerClientCom : NetworkManager {
 	{
 		base.OnStartServer ();
 		ConsoleManager.LogMessage ("Server started");
-
-		NetworkServer.RegisterHandler (ARCanvasSpace.ARMessage.messageType, this.OnReceivedClientMessage);
+		NetworkServer.RegisterHandler (ARMessage.messageType, this.OnReceivedClientMessage);
 	}
 
 	public override void OnServerReady (NetworkConnection conn)
@@ -41,11 +40,11 @@ public class ARServerClientCom : NetworkManager {
 		base.OnStartClient (client);
 		ConsoleManager.LogMessage ("Client " + client.connection.address + " has successfully started.");
 
-		client.RegisterHandler (ARCanvasSpace.ARMessage.messageType, this.OnHandleClientMessage);
+		client.RegisterHandler (ARMessage.messageType, this.OnHandleClientMessage);
 	}
 
 	private void OnHandleClientMessage(NetworkMessage networkMsg) {
-		ConsoleManager.LogMessage ("Received message from " + networkMsg.conn.address + " with message: " + networkMsg.ReadMessage<ARCanvasSpace.ARMessage> ().GetDestination ());
+		ConsoleManager.LogMessage ("Received message from " + networkMsg.conn.address + " with message: " + networkMsg.ReadMessage<ARMessage> ().GetDestination ());
 	}
 
 	/// <summary>
@@ -53,13 +52,13 @@ public class ARServerClientCom : NetworkManager {
 	/// </summary>
 	/// <param name="networkMsg">Network message.</param>
 	private void OnReceivedClientMessage(NetworkMessage networkMsg) {
-		ARCanvasSpace.ARMessage arMessage = networkMsg.ReadMessage<ARCanvasSpace.ARMessage> ();
+		ARMessage arMessage = networkMsg.ReadMessage<ARMessage> ();
 
 		for (int i = 0; i < NetworkServer.connections.Count; i++) {
 			NetworkConnection connection = NetworkServer.connections [i];
 
 			if (connection != null && connection != networkMsg.conn) {
-				connection.Send (ARCanvasSpace.ARMessage.messageType, arMessage);
+				connection.Send (ARMessage.messageType, arMessage);
 			}
 		}
 
@@ -67,7 +66,7 @@ public class ARServerClientCom : NetworkManager {
 			NetworkConnection connection = NetworkServer.connections [i];
 
 			if (connection != null && connection != networkMsg.conn) {
-				connection.Send (ARCanvasSpace.ARMessage.messageType, arMessage);
+				connection.Send (ARMessage.messageType, arMessage);
 			}
 		}
 	}
