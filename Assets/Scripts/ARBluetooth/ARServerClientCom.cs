@@ -34,7 +34,7 @@ public class ARServerClientCom : AndroidBluetoothNetworkManager {
 	}
 
 	private void OnHandleClientMessage(NetworkMessage networkMsg) {
-		ConsoleManager.LogMessage ("Received message from " + networkMsg.conn.address + " with message: " + networkMsg.ReadMessage<ARMessage> ().GetDestination ());
+		ConsoleManager.LogMessage ("Received message from " + networkMsg.conn.address + " with message: " + networkMsg.ReadMessage<ARMessage> ().destination);
 	}
 
 	/// <summary>

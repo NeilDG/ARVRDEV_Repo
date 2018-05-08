@@ -31,7 +31,7 @@ public class ARCanvasSpace : MonoBehaviour {
 				this.destination = new Vector3 (hit.point.x, moveableObject.transform.position.y, hit.point.z);
 
 				ARMessage arMsg = new ARMessage ();
-				arMsg.SetDestination (this.destination);
+				arMsg.destination = this.destination;
 				//NetworkServer.SendToAll (ARMessage.messageType, arMsg);
 				//ARNetworkHub.Instance.SendMessage(ARMessage.messageType, arMsg);
 				ConsoleManager.LogMessage ("Attempting to send destination: " + destination);

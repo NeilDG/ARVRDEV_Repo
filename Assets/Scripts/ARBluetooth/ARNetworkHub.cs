@@ -55,6 +55,7 @@ public class ARNetworkHub : MonoBehaviour {
 			ConsoleManager.LogMessage ("Cannot start as client because the device is set as a host server.");
 		} else {
 			ConsoleManager.LogMessage ("Attempting to start as client");
+			this.bluetoothHelper.SetCustomDeviceBrowser (null);
 			this.bluetoothHelper.StartClient ();
 		}
 
@@ -93,16 +94,15 @@ public class ARNetworkHub : MonoBehaviour {
 	}*/
 
 	public void SendDummyData() {
-		ARMessage arMsg = new ARMessage ();
-		arMsg.SetDestination (new Vector3(5.0f,5.0f,5.0f));
-		ConsoleManager.LogMessage ("Attempting to send dummy data " + arMsg.GetDestination ());
-		NetworkServer.SendToAll (ARMessage.messageType, arMsg);
-
+		// Send the message with the tap position to the server, so it can send it to other clients
+		NetworkManager.singleton.client.Send(ARMessage.messageType, new ARMessage(){destination = new Vector3(5.0f, 5.0f, 5.0f)});
+		ConsoleManager.LogMessage ("Attempting to send dummy data ");
+		//NetworkServer.SendToAll (ARMessage.messageType, arMsg);
 		//this.SendMessage(ARMessage.messageType, arMsg);
 	}
 
 	private void OnHandleClientMessage(NetworkMessage networkMsg) {
-		ConsoleManager.LogMessage ("[CLIENT] Received message from " + networkMsg.conn.address + " with message: " + networkMsg.reader.ReadMessage<ARMessage> ().GetDestination ());
+		ConsoleManager.LogMessage ("[CLIENT] Received message from " + networkMsg.conn.address + " with message: " + networkMsg.reader.ReadMessage<ARMessage> ().destination);
 	}
 
 	/// <summary>
@@ -110,7 +110,7 @@ public class ARNetworkHub : MonoBehaviour {
 	/// </summary>
 	/// <param name="networkMsg">Network message.</param>
 	private void OnReceivedClientMessage(NetworkMessage networkMsg) {
-		ConsoleManager.LogMessage ("[SERVER] Received message from " + networkMsg.conn.address + " with message: " + networkMsg.reader.ReadMessage<ARMessage> ().GetDestination ());
+		ConsoleManager.LogMessage ("[SERVER] Received message from " + networkMsg.conn.address + " with message: " + networkMsg.reader.ReadMessage<ARMessage> ().destination);
 
 		ARMessage arMessage = networkMsg.ReadMessage<ARMessage> ();
 
