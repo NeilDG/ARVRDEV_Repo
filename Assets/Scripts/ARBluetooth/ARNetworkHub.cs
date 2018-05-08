@@ -46,7 +46,7 @@ public class ARNetworkHub : MonoBehaviour {
 
 	public void StartAsHost() {
 		this.isServer = true;
-		this.bluetoothHelper.StartServer ();
+		this.bluetoothHelper.StartHost ();
 		ConsoleManager.LogMessage ("Attempting to start as server");
 	}
 
@@ -65,26 +65,44 @@ public class ARNetworkHub : MonoBehaviour {
 		ConsoleManager.LogMessage("Started discovery");
 	}
 
-	public void RegisterNetworkEvents() {
-		NetworkServer.RegisterHandler (ARMessage.messageType, this.OnReceivedClientMessage);
-		ConsoleManager.LogMessage ("Successfully registered server handler");
+	/*public void RegisterNetworkEvents() {
+		if (NetworkServer.active) {
+			NetworkServer.RegisterHandler (ARMessage.messageType, this.OnReceivedClientMessage);
+			ConsoleManager.LogMessage ("Successfully registered server handler");
+		}
 
 		if (NetworkManager.singleton.client != null) {
 			NetworkManager.singleton.client.RegisterHandler (ARMessage.messageType, this.OnHandleClientMessage);
 			ConsoleManager.LogMessage ("Client " + NetworkManager.singleton.client.connection.address + " has successfully started.");
 		}
 
-		/*NetworkClient[] clients = NetworkClient.allClients.ToArray ();
+		NetworkClient[] clients = NetworkClient.allClients.ToArray ();
 		for (int i = 0; i < clients.Length; i++) {
 			ConsoleManager.LogMessage ("Client " + clients[i].connection.address + " has successfully started.");
 			clients[i].RegisterHandler (ARMessage.messageType, this.OnHandleClientMessage);
 			NetworkServer.AddExternalConnection (clients [i].connection);
-		}*/
+		}
 
 	}
 
+	public void SendMessage(short type, MessageBase message) {
+		NetworkClient[] clients = NetworkClient.allClients.ToArray ();
+		for (int i = 0; i < clients.Length; i++) {
+			NetworkServer.SendToClient (clients[i].connection.connectionId,type, message);
+		}
+	}*/
+
+	public void SendDummyData() {
+		ARMessage arMsg = new ARMessage ();
+		arMsg.SetDestination (new Vector3(5.0f,5.0f,5.0f));
+		ConsoleManager.LogMessage ("Attempting to send dummy data " + arMsg.GetDestination ());
+		NetworkServer.SendToAll (ARMessage.messageType, arMsg);
+
+		//this.SendMessage(ARMessage.messageType, arMsg);
+	}
+
 	private void OnHandleClientMessage(NetworkMessage networkMsg) {
-		ConsoleManager.LogMessage ("Received message from " + networkMsg.conn.address + " with message: " + networkMsg.ReadMessage<ARMessage> ().GetDestination ());
+		ConsoleManager.LogMessage ("[CLIENT] Received message from " + networkMsg.conn.address + " with message: " + networkMsg.reader.ReadMessage<ARMessage> ().GetDestination ());
 	}
 
 	/// <summary>
@@ -92,6 +110,8 @@ public class ARNetworkHub : MonoBehaviour {
 	/// </summary>
 	/// <param name="networkMsg">Network message.</param>
 	private void OnReceivedClientMessage(NetworkMessage networkMsg) {
+		ConsoleManager.LogMessage ("[SERVER] Received message from " + networkMsg.conn.address + " with message: " + networkMsg.reader.ReadMessage<ARMessage> ().GetDestination ());
+
 		ARMessage arMessage = networkMsg.ReadMessage<ARMessage> ();
 
 		for (int i = 0; i < NetworkServer.connections.Count; i++) {

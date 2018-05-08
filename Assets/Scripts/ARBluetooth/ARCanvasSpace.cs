@@ -32,20 +32,9 @@ public class ARCanvasSpace : MonoBehaviour {
 
 				ARMessage arMsg = new ARMessage ();
 				arMsg.SetDestination (this.destination);
-				NetworkManager.singleton.client.Send (ARMessage.messageType, arMsg);
+				//NetworkServer.SendToAll (ARMessage.messageType, arMsg);
+				//ARNetworkHub.Instance.SendMessage(ARMessage.messageType, arMsg);
 				ConsoleManager.LogMessage ("Attempting to send destination: " + destination);
-				/*foreach (NetworkClient client in NetworkClient.allClients) {
-					client.Send (ARMessage.messageType, arMsg);
-					ConsoleManager.LogMessage ("Attempting to send destination: " + destination+ " to " +client.connection.address);
-				}*/
-				/*if (NetworkManager.singleton.client != null) {
-					NetworkManager.singleton.client.Send (ARMessage.messageType, arMsg);
-					ConsoleManager.LogMessage ("Attempting to send destination: " + destination);
-				} else {
-					ConsoleManager.LogMessage ("Cannot send destination because client was not found.");
-				}*/
-
-
 				this.moving = true;
 			}
 		}

@@ -14,6 +14,7 @@ public class BluetoothScreen : View {
 	[SerializeField] private Text deviceDisplay;
 	[SerializeField] private Button bluetoothBtn;
 	[SerializeField] private Button gameBtn;
+	[SerializeField] private Button dummyBtn;
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +26,7 @@ public class BluetoothScreen : View {
 		AndroidBluetoothMultiplayer.DevicePicked += this.OnDevicePicked;
 		this.deviceDisplay.gameObject.SetActive (false);
 		this.gameBtn.gameObject.SetActive (false);
+		this.dummyBtn.gameObject.SetActive (false);
 		this.ShowMainPanel ();
 
 		this.bluetoothBtn.enabled = !ARNetworkHub.Instance.IsBluetoothEnabled ();
@@ -83,6 +85,10 @@ public class BluetoothScreen : View {
 		this.hiddenPanel.gameObject.SetActive (false);
 	}
 
+	public void OnSendDummyButton() {
+		ARNetworkHub.Instance.SendDummyData ();
+	}
+
 	///
 	/// Bluetooth delegate methods
 	///
@@ -96,6 +102,9 @@ public class BluetoothScreen : View {
 	private void OnClientConnected(BluetoothDevice device) {
 		ConsoleManager.LogMessage ("Device connected: " + device.Name);
 		this.gameBtn.gameObject.SetActive (true);
+		this.dummyBtn.gameObject.SetActive (true);
+
+		//ARNetworkHub.Instance.RegisterNetworkEvents ();
 	}
 
 	private void OnClientDisconnected(BluetoothDevice device) {
@@ -105,9 +114,9 @@ public class BluetoothScreen : View {
 	private void OnServerConnected(BluetoothDevice device) {
 		ConsoleManager.LogMessage ("Successfully connected to device " + device.Name);
 		this.gameBtn.gameObject.SetActive (true);
+		this.dummyBtn.gameObject.SetActive (true);
 
-
-		ARNetworkHub.Instance.RegisterNetworkEvents ();
+		//ARNetworkHub.Instance.RegisterNetworkEvents ();
 	}
 
 	private void OnServerDisconnected(BluetoothDevice device) {

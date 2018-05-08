@@ -4,17 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using LostPolygon.AndroidBluetoothMultiplayer;
 
-public class ARServerClientCom : NetworkManager {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+public class ARServerClientCom : AndroidBluetoothNetworkManager {
 
 	public override void OnStartServer ()
 	{

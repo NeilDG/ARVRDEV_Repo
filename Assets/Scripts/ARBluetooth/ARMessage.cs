@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 public class ARMessage: MessageBase {
 	public const short messageType = 12345;
 
-	private Vector3 destination;
+	private Vector3 destination = Vector3.zero;
 
 	public ARMessage() {
 
