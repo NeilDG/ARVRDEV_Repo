@@ -123,7 +123,7 @@ public class SamplesMainMenu : MonoBehaviour
     public void UpdateConfiguration(string scene)
     {
 
-        var config = VuforiaConfiguration.Instance;
+       /*var config = VuforiaConfiguration.Instance;
         var dbConfig = config.DatabaseLoad;
 
         // all settings which are changed for a scene, have to be reset here
@@ -146,7 +146,7 @@ public class SamplesMainMenu : MonoBehaviour
                 dbConfig.DataSetsToLoad = dbConfig.DataSetsToActivate = new[] { "VuforiaMars_VuMark" };
                 config.Vuforia.MaxSimultaneousImageTargets = 10;
                 break;
-        }
+        }*/
     }
 
     #endregion // PUBLIC_METHODS

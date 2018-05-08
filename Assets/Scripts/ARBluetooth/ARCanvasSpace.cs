@@ -32,7 +32,7 @@ public class ARCanvasSpace : MonoBehaviour {
 
 				ARMessage arMsg = new ARMessage ();
 				arMsg.SetDestination (this.destination);
-				NetworkServer.SendToAll (ARMessage.messageType, arMsg);
+				NetworkManager.singleton.client.Send (ARMessage.messageType, arMsg);
 				ConsoleManager.LogMessage ("Attempting to send destination: " + destination);
 				/*foreach (NetworkClient client in NetworkClient.allClients) {
 					client.Send (ARMessage.messageType, arMsg);
