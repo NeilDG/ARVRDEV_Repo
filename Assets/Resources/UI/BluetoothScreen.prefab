@@ -227,12 +227,12 @@ GameObject:
   - component: {fileID: 114832513869233320}
   - component: {fileID: 114764181803715250}
   m_Layer: 5
-  m_Name: Btn
+  m_Name: SendBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1707010705139710
 GameObject:
   m_ObjectHideFlags: 1
@@ -853,7 +853,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Scan
+  m_Text: Send Dummy Data
 --- !u!114 &114476835187927594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1265,7 +1265,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114941919281800640}
-        m_MethodName: OnStartScan
+        m_MethodName: OnSendDummyButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1513,6 +1513,7 @@ MonoBehaviour:
   deviceDisplay: {fileID: 114543017720130700}
   bluetoothBtn: {fileID: 114902292042399286}
   gameBtn: {fileID: 114342332604697534}
+  dummyBtn: {fileID: 114764181803715250}
 --- !u!114 &114957407504564624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1804,10 +1805,10 @@ RectTransform:
   m_Father: {fileID: 224305551060155968}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 64.365, y: -135}
-  m_SizeDelta: {x: 128.73, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224305551060155968
 RectTransform:

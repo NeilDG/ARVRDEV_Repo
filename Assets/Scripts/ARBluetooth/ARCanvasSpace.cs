@@ -31,21 +31,10 @@ public class ARCanvasSpace : MonoBehaviour {
 				this.destination = new Vector3 (hit.point.x, moveableObject.transform.position.y, hit.point.z);
 
 				ARMessage arMsg = new ARMessage ();
-				arMsg.SetDestination (this.destination);
-				NetworkServer.SendToAll (ARMessage.messageType, arMsg);
+				arMsg.destination = this.destination;
+				//NetworkServer.SendToAll (ARMessage.messageType, arMsg);
+				//ARNetworkHub.Instance.SendMessage(ARMessage.messageType, arMsg);
 				ConsoleManager.LogMessage ("Attempting to send destination: " + destination);
-				/*foreach (NetworkClient client in NetworkClient.allClients) {
-					client.Send (ARMessage.messageType, arMsg);
-					ConsoleManager.LogMessage ("Attempting to send destination: " + destination+ " to " +client.connection.address);
-				}*/
-				/*if (NetworkManager.singleton.client != null) {
-					NetworkManager.singleton.client.Send (ARMessage.messageType, arMsg);
-					ConsoleManager.LogMessage ("Attempting to send destination: " + destination);
-				} else {
-					ConsoleManager.LogMessage ("Cannot send destination because client was not found.");
-				}*/
-
-
 				this.moving = true;
 			}
 		}

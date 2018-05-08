@@ -5,18 +5,9 @@ using UnityEngine.Networking;
 
 public class ARMessage: MessageBase {
 	public const short messageType = 12345;
-
-	private Vector3 destination;
+	public Vector3 destination = Vector3.zero; //must make this public. cannot use getter/setter to modify this variable via network.
 
 	public ARMessage() {
 
-	}
-
-	public void SetDestination(Vector3 destination) {
-		this.destination = destination;
-	}
-
-	public Vector3 GetDestination() {
-		return this.destination;
 	}
 }
