@@ -4,6 +4,13 @@ using UnityEngine;
 using LostPolygon.AndroidBluetoothMultiplayer;
 using UnityEngine.Networking;
 
+/// <summary>
+/// AR network hub for bluetooth connectivity.
+/// 
+/// ISSUES: 
+/// - Inheriting AndroidBluetoothNetworkManager for implementing own NetworkManager class does not correctly start the client
+/// - Using AndroidBluetoothNetworkManager instead of NetworkManager does not seem to pose any issues. 
+/// </summary>
 public class ARNetworkHub : MonoBehaviour {
 
 	private static ARNetworkHub sharedInstance = null;
@@ -66,27 +73,26 @@ public class ARNetworkHub : MonoBehaviour {
 		ConsoleManager.LogMessage("Started discovery");
 	}
 
-	/*public void RegisterNetworkEvents() {
+	public void RegisterNetworkEvents() {
 		if (NetworkServer.active) {
 			NetworkServer.RegisterHandler (ARMessage.messageType, this.OnReceivedClientMessage);
 			ConsoleManager.LogMessage ("Successfully registered server handler");
 		}
-
+			
 		if (NetworkManager.singleton.client != null) {
 			NetworkManager.singleton.client.RegisterHandler (ARMessage.messageType, this.OnHandleClientMessage);
 			ConsoleManager.LogMessage ("Client " + NetworkManager.singleton.client.connection.address + " has successfully started.");
 		}
 
-		NetworkClient[] clients = NetworkClient.allClients.ToArray ();
+		/*NetworkClient[] clients = NetworkClient.allClients.ToArray ();
 		for (int i = 0; i < clients.Length; i++) {
 			ConsoleManager.LogMessage ("Client " + clients[i].connection.address + " has successfully started.");
 			clients[i].RegisterHandler (ARMessage.messageType, this.OnHandleClientMessage);
-			NetworkServer.AddExternalConnection (clients [i].connection);
-		}
+		}*/
 
 	}
 
-	public void SendMessage(short type, MessageBase message) {
+	/*public void SendMessage(short type, MessageBase message) {
 		NetworkClient[] clients = NetworkClient.allClients.ToArray ();
 		for (int i = 0; i < clients.Length; i++) {
 			NetworkServer.SendToClient (clients[i].connection.connectionId,type, message);
@@ -95,14 +101,17 @@ public class ARNetworkHub : MonoBehaviour {
 
 	public void SendDummyData() {
 		// Send the message with the tap position to the server, so it can send it to other clients
+
+		//ConsoleManager.LogMessage ("Attempting to send dummy data ");
+		ARMessage arMsg = new ARMessage ();
+		arMsg.destination = new Vector3 (5.0f, 5.0f, 5.0f);
 		NetworkManager.singleton.client.Send(ARMessage.messageType, new ARMessage(){destination = new Vector3(5.0f, 5.0f, 5.0f)});
-		ConsoleManager.LogMessage ("Attempting to send dummy data ");
 		//NetworkServer.SendToAll (ARMessage.messageType, arMsg);
 		//this.SendMessage(ARMessage.messageType, arMsg);
 	}
 
 	private void OnHandleClientMessage(NetworkMessage networkMsg) {
-		ConsoleManager.LogMessage ("[CLIENT] Received message from " + networkMsg.conn.address + " with message: " + networkMsg.reader.ReadMessage<ARMessage> ().destination);
+		ConsoleManager.LogMessage ("[CLIENT] Received message from " + networkMsg.conn.address + " with message: " + networkMsg.ReadMessage<ARMessage> ().destination);
 	}
 
 	/// <summary>
@@ -110,7 +119,7 @@ public class ARNetworkHub : MonoBehaviour {
 	/// </summary>
 	/// <param name="networkMsg">Network message.</param>
 	private void OnReceivedClientMessage(NetworkMessage networkMsg) {
-		ConsoleManager.LogMessage ("[SERVER] Received message from " + networkMsg.conn.address + " with message: " + networkMsg.reader.ReadMessage<ARMessage> ().destination);
+		//ConsoleManager.LogMessage ("[SERVER] Received message from " + networkMsg.conn.address + " with message: " + networkMsg.ReadMessage<ARMessage> ().destination);
 
 		ARMessage arMessage = networkMsg.ReadMessage<ARMessage> ();
 
@@ -119,6 +128,7 @@ public class ARNetworkHub : MonoBehaviour {
 
 			if (connection != null && connection != networkMsg.conn) {
 				connection.Send (ARMessage.messageType, arMessage);
+				ConsoleManager.LogMessage ("[NON-LOCAL] Sending position " + arMessage.destination + " to " +connection.address);
 			}
 		}
 
@@ -127,6 +137,7 @@ public class ARNetworkHub : MonoBehaviour {
 
 			if (connection != null && connection != networkMsg.conn) {
 				connection.Send (ARMessage.messageType, arMessage);
+				ConsoleManager.LogMessage ("[LOCAL] Sending position " + arMessage.destination + " to " +connection.address);
 			}
 		}
 	}

@@ -103,6 +103,8 @@ public class BluetoothScreen : View {
 		ConsoleManager.LogMessage ("Device connected: " + device.Name);
 		this.gameBtn.gameObject.SetActive (true);
 		this.dummyBtn.gameObject.SetActive (true);
+
+		ARNetworkHub.Instance.RegisterNetworkEvents ();
 	}
 
 	private void OnClientDisconnected(BluetoothDevice device) {
@@ -113,8 +115,7 @@ public class BluetoothScreen : View {
 		ConsoleManager.LogMessage ("Successfully connected to device " + device.Name);
 		this.gameBtn.gameObject.SetActive (true);
 		this.dummyBtn.gameObject.SetActive (true);
-
-		//ARNetworkHub.Instance.RegisterNetworkEvents ();
+		ARNetworkHub.Instance.RegisterNetworkEvents ();
 	}
 
 	private void OnServerDisconnected(BluetoothDevice device) {

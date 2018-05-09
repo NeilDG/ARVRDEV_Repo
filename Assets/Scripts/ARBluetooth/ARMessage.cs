@@ -8,6 +8,6 @@ public class ARMessage: MessageBase {
 	public Vector3 destination = Vector3.zero; //must make this public. cannot use getter/setter to modify this variable via network.
 
 	public ARMessage() {
-
+		
 	}
 }
