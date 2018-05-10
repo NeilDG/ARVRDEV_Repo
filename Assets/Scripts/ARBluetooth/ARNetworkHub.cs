@@ -10,6 +10,7 @@ using UnityEngine.Networking;
 /// ISSUES: 
 /// - Inheriting AndroidBluetoothNetworkManager for implementing own NetworkManager class does not correctly start the client
 /// - Using AndroidBluetoothNetworkManager instead of NetworkManager does not seem to pose any issues. 
+/// - The network message gets "consumed" once referenced.
 /// </summary>
 public class ARNetworkHub : MonoBehaviour {
 
@@ -75,39 +76,23 @@ public class ARNetworkHub : MonoBehaviour {
 
 	public void RegisterNetworkEvents() {
 		if (NetworkServer.active) {
-			NetworkServer.RegisterHandler (ARMessage.messageType, this.OnReceivedClientMessage);
+			NetworkServer.RegisterHandler (ARMessage.messageType, this.OnServerHandleMessage);
 			ConsoleManager.LogMessage ("Successfully registered server handler");
 		}
-			
+
 		if (NetworkManager.singleton.client != null) {
 			NetworkManager.singleton.client.RegisterHandler (ARMessage.messageType, this.OnHandleClientMessage);
-			ConsoleManager.LogMessage ("Client " + NetworkManager.singleton.client.connection.address + " has successfully started.");
+			ConsoleManager.LogMessage ("Client " + NetworkManager.singleton.client.ToString() + " has successfully started.");
+		} else {
+			ConsoleManager.LogMessage ("Did not do anything. No client found.");
 		}
-
-		/*NetworkClient[] clients = NetworkClient.allClients.ToArray ();
-		for (int i = 0; i < clients.Length; i++) {
-			ConsoleManager.LogMessage ("Client " + clients[i].connection.address + " has successfully started.");
-			clients[i].RegisterHandler (ARMessage.messageType, this.OnHandleClientMessage);
-		}*/
 
 	}
-
-	/*public void SendMessage(short type, MessageBase message) {
-		NetworkClient[] clients = NetworkClient.allClients.ToArray ();
-		for (int i = 0; i < clients.Length; i++) {
-			NetworkServer.SendToClient (clients[i].connection.connectionId,type, message);
-		}
-	}*/
-
 	public void SendDummyData() {
 		// Send the message with the tap position to the server, so it can send it to other clients
-
-		//ConsoleManager.LogMessage ("Attempting to send dummy data ");
 		ARMessage arMsg = new ARMessage ();
 		arMsg.destination = new Vector3 (5.0f, 5.0f, 5.0f);
 		NetworkManager.singleton.client.Send(ARMessage.messageType, new ARMessage(){destination = new Vector3(5.0f, 5.0f, 5.0f)});
-		//NetworkServer.SendToAll (ARMessage.messageType, arMsg);
-		//this.SendMessage(ARMessage.messageType, arMsg);
 	}
 
 	private void OnHandleClientMessage(NetworkMessage networkMsg) {
@@ -118,7 +103,7 @@ public class ARNetworkHub : MonoBehaviour {
 	/// The server receives a message from its clients (possibly from itself). This function sends the message to all clients (except the sender).
 	/// </summary>
 	/// <param name="networkMsg">Network message.</param>
-	private void OnReceivedClientMessage(NetworkMessage networkMsg) {
+	private void OnServerHandleMessage(NetworkMessage networkMsg) {
 		//ConsoleManager.LogMessage ("[SERVER] Received message from " + networkMsg.conn.address + " with message: " + networkMsg.ReadMessage<ARMessage> ().destination);
 
 		ARMessage arMessage = networkMsg.ReadMessage<ARMessage> ();
@@ -133,7 +118,7 @@ public class ARNetworkHub : MonoBehaviour {
 		}
 
 		for (int i = 0; i < NetworkServer.localConnections.Count; i++) {
-			NetworkConnection connection = NetworkServer.connections [i];
+			NetworkConnection connection = NetworkServer.localConnections [i];
 
 			if (connection != null && connection != networkMsg.conn) {
 				connection.Send (ARMessage.messageType, arMessage);

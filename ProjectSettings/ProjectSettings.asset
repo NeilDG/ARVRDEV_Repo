@@ -240,7 +240,7 @@ PlayerSettings:
   AndroidTargetArchitectures: 1
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Users/NeilDG/Documents/MSCSGithubProjects/GAM-ENG_ARRepo/gameng.keystore
+  AndroidKeystoreName: C:/Users/delgallegon/Documents/GithubProjects/GAM-ENG_ARRepo/gameng.keystore
   AndroidKeyaliasName: neildg
   AndroidTVCompatibility: 0
   AndroidIsGame: 0
