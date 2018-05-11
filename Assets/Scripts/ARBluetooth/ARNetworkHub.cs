@@ -25,13 +25,16 @@ public class ARNetworkHub : MonoBehaviour {
 	[SerializeField] private ARNetworkManagerHelper bluetoothHelper;
 
 	private bool isServer = false;
+	private bool hasThrownMessage = false;
 
 	void Awake() {
 		sharedInstance = this;
+		ARMessageQueue.Initialize ();
 	}
 
 	void OnDestroy() {
 		sharedInstance = null;
+		ARMessageQueue.Destroy ();
 	}
 
 	public AndroidBluetoothNetworkManagerHelper GetBluetoothHelperInstance() {
@@ -76,12 +79,12 @@ public class ARNetworkHub : MonoBehaviour {
 
 	public void RegisterNetworkEvents() {
 		if (NetworkServer.active) {
-			NetworkServer.RegisterHandler (ARMessage.messageType, this.OnServerHandleMessage);
+			NetworkServer.RegisterHandler (ARNetworkMessage.messageType, this.OnServerHandleMessage);
 			ConsoleManager.LogMessage ("Successfully registered server handler");
 		}
 
 		if (NetworkManager.singleton.client != null) {
-			NetworkManager.singleton.client.RegisterHandler (ARMessage.messageType, this.OnHandleClientMessage);
+			NetworkManager.singleton.client.RegisterHandler (ARNetworkMessage.messageType, this.OnHandleClientMessage);
 			ConsoleManager.LogMessage ("Client " + NetworkManager.singleton.client.ToString() + " has successfully started.");
 		} else {
 			ConsoleManager.LogMessage ("Did not do anything. No client found.");
@@ -90,13 +93,21 @@ public class ARNetworkHub : MonoBehaviour {
 	}
 	public void SendDummyData() {
 		// Send the message with the tap position to the server, so it can send it to other clients
-		ARMessage arMsg = new ARMessage ();
+		ARNetworkMessage arMsg = new ARNetworkMessage ();
 		arMsg.destination = new Vector3 (5.0f, 5.0f, 5.0f);
-		NetworkManager.singleton.client.Send(ARMessage.messageType, new ARMessage(){destination = new Vector3(5.0f, 5.0f, 5.0f)});
+		arMsg.actionType = ARNetworkMessage.ActionType.TEST_DATA;
+		NetworkManager.singleton.client.Send(ARNetworkMessage.messageType, arMsg);
 	}
 
 	private void OnHandleClientMessage(NetworkMessage networkMsg) {
-		ConsoleManager.LogMessage ("[CLIENT] Received message from " + networkMsg.conn.address + " with message: " + networkMsg.ReadMessage<ARMessage> ().destination);
+		ARNetworkMessage arMessage = networkMsg.ReadMessage<ARNetworkMessage> ();
+
+		if (arMessage.actionType != ARNetworkMessage.ActionType.TEST_DATA) {
+			ARMessageQueue.Instance.EnqueueMessage (arMessage.actionType, arMessage.destination);
+			EventBroadcaster.Instance.PostEvent (EventNames.ARBluetoothEvents.ON_RECEIVED_MESSAGE);
+		} else {
+			ConsoleManager.LogMessage ("[CLIENT] Will not enqueue message. Action type is " + arMessage.actionType);
+		}
 	}
 
 	/// <summary>
@@ -106,13 +117,14 @@ public class ARNetworkHub : MonoBehaviour {
 	private void OnServerHandleMessage(NetworkMessage networkMsg) {
 		//ConsoleManager.LogMessage ("[SERVER] Received message from " + networkMsg.conn.address + " with message: " + networkMsg.ReadMessage<ARMessage> ().destination);
 
-		ARMessage arMessage = networkMsg.ReadMessage<ARMessage> ();
+		ARNetworkMessage arMessage = networkMsg.ReadMessage<ARNetworkMessage> ();
 
 		for (int i = 0; i < NetworkServer.connections.Count; i++) {
 			NetworkConnection connection = NetworkServer.connections [i];
 
-			if (connection != null && connection != networkMsg.conn) {
-				connection.Send (ARMessage.messageType, arMessage);
+			if (connection != null && connection != networkMsg.conn && !this.hasThrownMessage) {
+				connection.Send (ARNetworkMessage.messageType, arMessage);
+				this.hasThrownMessage = true;
 				ConsoleManager.LogMessage ("[NON-LOCAL] Sending position " + arMessage.destination + " to " +connection.address);
 			}
 		}
@@ -120,10 +132,13 @@ public class ARNetworkHub : MonoBehaviour {
 		for (int i = 0; i < NetworkServer.localConnections.Count; i++) {
 			NetworkConnection connection = NetworkServer.localConnections [i];
 
-			if (connection != null && connection != networkMsg.conn) {
-				connection.Send (ARMessage.messageType, arMessage);
+			if (connection != null && connection != networkMsg.conn && !this.hasThrownMessage) {
+				connection.Send (ARNetworkMessage.messageType, arMessage);
+				this.hasThrownMessage = true;
 				ConsoleManager.LogMessage ("[LOCAL] Sending position " + arMessage.destination + " to " +connection.address);
 			}
 		}
+
+		this.hasThrownMessage = false;
 	}
 }

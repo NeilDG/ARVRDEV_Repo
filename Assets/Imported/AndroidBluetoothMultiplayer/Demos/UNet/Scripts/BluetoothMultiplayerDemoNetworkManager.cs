@@ -14,7 +14,7 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
 
             // Register the handler for the CreateTapMarkerMessage that is sent from client to server
             //NetworkServer.RegisterHandler(CreateTapMarkerMessage.kMessageType, OnServerCreateTapMarkerHandler);
-			NetworkServer.RegisterHandler(ARMessage.messageType, this.OnReceivedClientMessage);
+			NetworkServer.RegisterHandler(ARNetworkMessage.messageType, this.OnReceivedClientMessage);
         }
 
         public override void OnStartClient(NetworkClient client) {
@@ -22,7 +22,7 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
 
             // Register the handler for the CreateTapMarkerMessage that is sent from server to clients
            // client.RegisterHandler(CreateTapMarkerMessage.kMessageType, OnClientCreateTapMarkerHandler);
-			NetworkServer.RegisterHandler(ARMessage.messageType, this.OnHandleClientMessage);
+			NetworkServer.RegisterHandler(ARNetworkMessage.messageType, this.OnHandleClientMessage);
         }
 
         public override void OnServerReady(NetworkConnection conn) {
@@ -83,7 +83,7 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
         }
 
 		private void OnHandleClientMessage(NetworkMessage networkMsg) {
-			ConsoleManager.LogMessage ("[CLIENT] Received message from " + networkMsg.conn.address + " with message: " + networkMsg.reader.ReadMessage<ARMessage> ().destination);
+			ConsoleManager.LogMessage ("[CLIENT] Received message from " + networkMsg.conn.address + " with message: " + networkMsg.reader.ReadMessage<ARNetworkMessage> ().destination);
 		}
 
 		/// <summary>
@@ -91,15 +91,15 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
 		/// </summary>
 		/// <param name="networkMsg">Network message.</param>
 		private void OnReceivedClientMessage(NetworkMessage networkMsg) {
-			ConsoleManager.LogMessage ("[SERVER] Received message from " + networkMsg.conn.address + " with message: " + networkMsg.reader.ReadMessage<ARMessage> ().destination);
+			ConsoleManager.LogMessage ("[SERVER] Received message from " + networkMsg.conn.address + " with message: " + networkMsg.reader.ReadMessage<ARNetworkMessage> ().destination);
 
-			ARMessage arMessage = networkMsg.ReadMessage<ARMessage> ();
+			ARNetworkMessage arMessage = networkMsg.ReadMessage<ARNetworkMessage> ();
 
 			for (int i = 0; i < NetworkServer.connections.Count; i++) {
 				NetworkConnection connection = NetworkServer.connections [i];
 
 				if (connection != null && connection != networkMsg.conn) {
-					connection.Send (ARMessage.messageType, arMessage);
+					connection.Send (ARNetworkMessage.messageType, arMessage);
 				}
 			}
 
@@ -107,7 +107,7 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
 				NetworkConnection connection = NetworkServer.connections [i];
 
 				if (connection != null && connection != networkMsg.conn) {
-					connection.Send (ARMessage.messageType, arMessage);
+					connection.Send (ARNetworkMessage.messageType, arMessage);
 				}
 			}
 		}

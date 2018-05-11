@@ -10,7 +10,7 @@ public class ARServerClientCom : AndroidBluetoothNetworkManager {
 	{
 		base.OnStartServer ();
 		ConsoleManager.LogMessage ("Server started");
-		NetworkServer.RegisterHandler (ARMessage.messageType, this.OnReceivedClientMessage);
+		NetworkServer.RegisterHandler (ARNetworkMessage.messageType, this.OnReceivedClientMessage);
 	}
 
 	public override void OnServerReady (NetworkConnection conn)
@@ -30,11 +30,11 @@ public class ARServerClientCom : AndroidBluetoothNetworkManager {
 		base.OnStartClient (client);
 		ConsoleManager.LogMessage ("Client " + client.connection.address + " has successfully started.");
 
-		client.RegisterHandler (ARMessage.messageType, this.OnHandleClientMessage);
+		client.RegisterHandler (ARNetworkMessage.messageType, this.OnHandleClientMessage);
 	}
 
 	private void OnHandleClientMessage(NetworkMessage networkMsg) {
-		ConsoleManager.LogMessage ("Received message from " + networkMsg.conn.address + " with message: " + networkMsg.ReadMessage<ARMessage> ().destination);
+		ConsoleManager.LogMessage ("Received message from " + networkMsg.conn.address + " with message: " + networkMsg.ReadMessage<ARNetworkMessage> ().destination);
 	}
 
 	/// <summary>
@@ -42,13 +42,13 @@ public class ARServerClientCom : AndroidBluetoothNetworkManager {
 	/// </summary>
 	/// <param name="networkMsg">Network message.</param>
 	private void OnReceivedClientMessage(NetworkMessage networkMsg) {
-		ARMessage arMessage = networkMsg.ReadMessage<ARMessage> ();
+		ARNetworkMessage arMessage = networkMsg.ReadMessage<ARNetworkMessage> ();
 
 		for (int i = 0; i < NetworkServer.connections.Count; i++) {
 			NetworkConnection connection = NetworkServer.connections [i];
 
 			if (connection != null && connection != networkMsg.conn) {
-				connection.Send (ARMessage.messageType, arMessage);
+				connection.Send (ARNetworkMessage.messageType, arMessage);
 			}
 		}
 
@@ -56,7 +56,7 @@ public class ARServerClientCom : AndroidBluetoothNetworkManager {
 			NetworkConnection connection = NetworkServer.connections [i];
 
 			if (connection != null && connection != networkMsg.conn) {
-				connection.Send (ARMessage.messageType, arMessage);
+				connection.Send (ARNetworkMessage.messageType, arMessage);
 			}
 		}
 	}
