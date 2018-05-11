@@ -38,3 +38,4 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Imported/AndroidBluetoothMultiplayer/Demos/UNet/BluetoothMultiplayerDemo.unity
     guid: e45614ac4da622849b314ef4c5157795
+  m_configObjects: {}

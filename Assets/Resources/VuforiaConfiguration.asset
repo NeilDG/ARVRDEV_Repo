@@ -44,17 +44,13 @@ MonoBehaviour:
       ContainsMagnet: 0
   databaseLoad:
     dataSetsToLoad:
-    - VuforiaMars_Images
-    - VuforiaMars_VuMark
-    - GAMENG_RepoDB_OT
     - DefaultDB
+    - GAMENG_RepoDB_OT
     - GAMENG_RepoDB
     dataSetsToActivate:
-    - VuforiaMars_Images
-    - VuforiaMars_VuMark
+    - DefaultDB
     - GAMENG_RepoDB_OT
     - GAMENG_RepoDB
-    - DefaultDB
   videoBackground:
     clippingMode: 0
     numDivisions: 2

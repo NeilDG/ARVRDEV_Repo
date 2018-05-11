@@ -1,21 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 /// <summary>
 /// Simple script that allows movement of an object through tap.
 /// </summary>
 public class ARCanvasSpace : MonoBehaviour {
+	public const string TAG = "ARCanvasSpace";
 
 	[SerializeField] private Camera arCamera;
-	[SerializeField] private float moveSpeed = 1.0f;
-	[SerializeField] private GameObject moveableObject;
+	[SerializeField] private ARController player;
+	[SerializeField] private ARController opponent;
 
-	private bool moving = false;
-	private Vector3 destination;
 	// Use this for initialization
 	void Start () {
-		
+		//set coordinates
+		this.opponent.transform.localPosition = this.player.transform.localPosition;
+		EventBroadcaster.Instance.AddObserver (EventNames.ARBluetoothEvents.ON_RECEIVED_MESSAGE, this.OnReceivedMessage);
+	}
+
+	void OnDestroy() {
+		EventBroadcaster.Instance.RemoveObserver (EventNames.ARBluetoothEvents.ON_RECEIVED_MESSAGE);
 	}
 	
 	// Update is called once per frame
@@ -27,22 +33,26 @@ public class ARCanvasSpace : MonoBehaviour {
 
 			RaycastHit hit;
 			if (Physics.Raycast (ray, out hit)) {
-				this.destination = new Vector3 (hit.point.x, moveableObject.transform.position.y, hit.point.z);
-				Debug.Log ("Destination: " + destination);
+				Vector3 destination = new Vector3 (hit.point.x, this.player.transform.position.y, hit.point.z);
 
-				this.moving = true;
+				//move the piece
+				this.player.MoveToDestination(destination);
+
+				//send the move message
+				ARNetworkMessage arMsg = new ARNetworkMessage ();
+				arMsg.destination = destination;
+				arMsg.actionType  = ARNetworkMessage.ActionType.MOVE;
+				NetworkManager.singleton.client.Send (ARNetworkMessage.messageType, arMsg);
+				ConsoleManager.LogMessage ("Attempting to send destination: " + destination);
 			}
 		}
+	}
 
-		if (this.moving) {
-			float step = this.moveSpeed * Time.deltaTime;
-			Vector3 origin = this.moveableObject.transform.position;
-			this.moveableObject.transform.position = Vector3.MoveTowards (origin, destination, step);
+	private void OnReceivedMessage() {
+		//process message here
+		ARLocalMessage localMsg = ARMessageQueue.Instance.GetLatestMessage();
+		ConsoleManager.LogMessage (TAG + " received message with type of " + localMsg.GetActionType ());
 
-			if(Vector3.Distance(this.moveableObject.transform.position, destination) <= 0.0f) {
-				this.moving = false;
-			}
-
-		}
+		this.opponent.MoveToDestination (localMsg.GetPosition ());
 	}
 }

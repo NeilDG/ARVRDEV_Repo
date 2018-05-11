@@ -42,6 +42,7 @@ namespace LostPolygon.AndroidBluetoothMultiplayer {
         }
 
         protected virtual void OnEnable() {
+			Debug.LogWarning ("Enabled bluetooth network manager");
             _networkManager = GetComponent<NetworkManager>();
 
             // Setting the UUID. Must be unique for every application

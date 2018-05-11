@@ -13,6 +13,12 @@ public class EventNames {
 
 	public const string ON_PICTURE_CLICKED = "ON_PICTURE_CLICKED";
 
+
+	public class ARBluetoothEvents {
+		public const string ON_START_BLUETOOTH_DEMO = "ON_START_BLUETOOTH_DEMO";
+		public const string ON_RECEIVED_MESSAGE = "ON_RECEIVED_MESSAGE";
+	}
+
 	public class ARPhysicsEvents {
 		public const string ON_FIRST_TARGET_SCAN = "ON_FIRST_TARGET_SCAN";
 		public const string ON_FINAL_TARGET_SCAN = "ON_FINAL_TARGET_SCAN";

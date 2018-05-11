@@ -13,14 +13,16 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
             base.OnStartServer();
 
             // Register the handler for the CreateTapMarkerMessage that is sent from client to server
-            NetworkServer.RegisterHandler(CreateTapMarkerMessage.kMessageType, OnServerCreateTapMarkerHandler);
+            //NetworkServer.RegisterHandler(CreateTapMarkerMessage.kMessageType, OnServerCreateTapMarkerHandler);
+			NetworkServer.RegisterHandler(ARNetworkMessage.messageType, this.OnReceivedClientMessage);
         }
 
         public override void OnStartClient(NetworkClient client) {
             base.OnStartClient(client);
 
             // Register the handler for the CreateTapMarkerMessage that is sent from server to clients
-            client.RegisterHandler(CreateTapMarkerMessage.kMessageType, OnClientCreateTapMarkerHandler);
+           // client.RegisterHandler(CreateTapMarkerMessage.kMessageType, OnClientCreateTapMarkerHandler);
+			NetworkServer.RegisterHandler(ARNetworkMessage.messageType, this.OnHandleClientMessage);
         }
 
         public override void OnServerReady(NetworkConnection conn) {
@@ -79,5 +81,37 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
                 connection.Send(CreateTapMarkerMessage.kMessageType, createTapMarkerMessage);
             }
         }
+
+		private void OnHandleClientMessage(NetworkMessage networkMsg) {
+			ConsoleManager.LogMessage ("[CLIENT] Received message from " + networkMsg.conn.address + " with message: " + networkMsg.reader.ReadMessage<ARNetworkMessage> ().destination);
+		}
+
+		/// <summary>
+		/// The server receives a message from its clients (possibly from itself). This function sends the message to all clients (except the sender).
+		/// </summary>
+		/// <param name="networkMsg">Network message.</param>
+		private void OnReceivedClientMessage(NetworkMessage networkMsg) {
+			ConsoleManager.LogMessage ("[SERVER] Received message from " + networkMsg.conn.address + " with message: " + networkMsg.reader.ReadMessage<ARNetworkMessage> ().destination);
+
+			ARNetworkMessage arMessage = networkMsg.ReadMessage<ARNetworkMessage> ();
+
+			for (int i = 0; i < NetworkServer.connections.Count; i++) {
+				NetworkConnection connection = NetworkServer.connections [i];
+
+				if (connection != null && connection != networkMsg.conn) {
+					connection.Send (ARNetworkMessage.messageType, arMessage);
+				}
+			}
+
+			for (int i = 0; i < NetworkServer.localConnections.Count; i++) {
+				NetworkConnection connection = NetworkServer.connections [i];
+
+				if (connection != null && connection != networkMsg.conn) {
+					connection.Send (ARNetworkMessage.messageType, arMessage);
+				}
+			}
+		}
     }
+
+
 }

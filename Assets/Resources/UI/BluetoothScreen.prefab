@@ -54,6 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224780980805615072}
   - component: {fileID: 114301110914945816}
+  - component: {fileID: 114676523182268982}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -226,12 +227,12 @@ GameObject:
   - component: {fileID: 114832513869233320}
   - component: {fileID: 114764181803715250}
   m_Layer: 5
-  m_Name: Btn
+  m_Name: SendBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1707010705139710
 GameObject:
   m_ObjectHideFlags: 1
@@ -852,7 +853,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Scan
+  m_Text: Send Dummy Data
 --- !u!114 &114476835187927594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1038,7 +1039,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 224251820939527490}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999995
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1132,6 +1133,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Enable Bluetooth
+--- !u!114 &114676523182268982
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1192412699391168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 1
 --- !u!114 &114690355637782944
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1251,7 +1265,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114941919281800640}
-        m_MethodName: OnStartScan
+        m_MethodName: OnSendDummyButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1499,6 +1513,7 @@ MonoBehaviour:
   deviceDisplay: {fileID: 114543017720130700}
   bluetoothBtn: {fileID: 114902292042399286}
   gameBtn: {fileID: 114342332604697534}
+  dummyBtn: {fileID: 114764181803715250}
 --- !u!114 &114957407504564624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1790,10 +1805,10 @@ RectTransform:
   m_Father: {fileID: 224305551060155968}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 64.365, y: -135}
-  m_SizeDelta: {x: 128.73, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224305551060155968
 RectTransform:
@@ -2076,8 +2091,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00000057491053}
-  m_SizeDelta: {x: 0, y: 300}
+  m_AnchoredPosition: {x: 0, y: -0.0000026415782}
+  m_SizeDelta: {x: -14.299988, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224794999396023204
 RectTransform:
