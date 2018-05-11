@@ -26,7 +26,7 @@ public class ARNetworkHub : MonoBehaviour {
 
 	private int clientID = 0; //set by the network manager for every successive client connected. 0 is the server.
 	private bool isServer = false;
-	private bool hasThrownMessage = false;
+	//private bool hasThrownMessage = false;
 
 	void Awake() {
 		sharedInstance = this;
@@ -128,7 +128,7 @@ public class ARNetworkHub : MonoBehaviour {
 		for (int i = 0; i < NetworkServer.connections.Count; i++) {
 			NetworkConnection connection = NetworkServer.connections [i];
 
-			if (connection != null && connection != networkMsg.conn && !this.hasThrownMessage) {
+			if (connection != null && connection != networkMsg.conn) {
 				connection.Send (ARNetworkMessage.messageType, arMessage);
 				ConsoleManager.LogMessage ("[NON-LOCAL] Sending position " + arMessage.destination + " to " +connection.address);
 			}
@@ -139,9 +139,9 @@ public class ARNetworkHub : MonoBehaviour {
 		for (int i = 0; i < NetworkServer.localConnections.Count; i++) {
 			NetworkConnection connection = NetworkServer.localConnections [i];
 
-			if (connection != null && connection != networkMsg.conn && !this.hasThrownMessage) {
+			if (connection != null && connection != networkMsg.conn) {
 				connection.Send (ARNetworkMessage.messageType, arMessage);
-				this.hasThrownMessage = true;
+				//this.hasThrownMessage = true;
 				ConsoleManager.LogMessage ("[LOCAL] Sending position " + arMessage.destination + " to " +connection.address);
 			}
 		}
