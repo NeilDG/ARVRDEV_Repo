@@ -13,6 +13,8 @@ public class ARCanvasSpace : MonoBehaviour {
 	[SerializeField] private ARController player;
 	[SerializeField] private ARController opponent;
 
+	private List<ARController> opponents;
+
 	// Use this for initialization
 	void Start () {
 		//set coordinates

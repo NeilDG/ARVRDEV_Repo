@@ -13,7 +13,7 @@ using UnityEngine.Networking;
 /// - The network message gets "consumed" once referenced.
 /// </summary>
 public class ARNetworkHub : MonoBehaviour {
-
+	public const string TAG = "[ARNetworkHub]";
 	private static ARNetworkHub sharedInstance = null;
 	public static ARNetworkHub Instance {
 		get {
@@ -24,6 +24,7 @@ public class ARNetworkHub : MonoBehaviour {
 
 	[SerializeField] private ARNetworkManagerHelper bluetoothHelper;
 
+	private int clientID = 0; //set by the network manager for every successive client connected. 0 is the server.
 	private bool isServer = false;
 	private bool hasThrownMessage = false;
 
@@ -69,7 +70,10 @@ public class ARNetworkHub : MonoBehaviour {
 			this.bluetoothHelper.SetCustomDeviceBrowser (null);
 			this.bluetoothHelper.StartClient ();
 		}
+	}
 
+	public int GetClientID() {
+		return this.clientID;
 	}
 
 	public void StartScan() {
@@ -85,7 +89,9 @@ public class ARNetworkHub : MonoBehaviour {
 
 		if (NetworkManager.singleton.client != null) {
 			NetworkManager.singleton.client.RegisterHandler (ARNetworkMessage.messageType, this.OnHandleClientMessage);
-			ConsoleManager.LogMessage ("Client " + NetworkManager.singleton.client.ToString() + " has successfully started.");
+			//ConsoleManager.LogMessage ("Client " + NetworkManager.singleton.client.ToString() + " has successfully started.");
+			this.clientID = NetworkServer.connections.Count;
+			ConsoleManager.LogMessage (TAG + " successfully set client ID to " + this.clientID);
 		} else {
 			ConsoleManager.LogMessage ("Did not do anything. No client found.");
 		}
@@ -124,10 +130,11 @@ public class ARNetworkHub : MonoBehaviour {
 
 			if (connection != null && connection != networkMsg.conn && !this.hasThrownMessage) {
 				connection.Send (ARNetworkMessage.messageType, arMessage);
-				this.hasThrownMessage = true;
 				ConsoleManager.LogMessage ("[NON-LOCAL] Sending position " + arMessage.destination + " to " +connection.address);
 			}
 		}
+
+		//this.hasThrownMessage = true;
 
 		for (int i = 0; i < NetworkServer.localConnections.Count; i++) {
 			NetworkConnection connection = NetworkServer.localConnections [i];
@@ -139,6 +146,6 @@ public class ARNetworkHub : MonoBehaviour {
 			}
 		}
 
-		this.hasThrownMessage = false;
+		//this.hasThrownMessage = false;
 	}
 }

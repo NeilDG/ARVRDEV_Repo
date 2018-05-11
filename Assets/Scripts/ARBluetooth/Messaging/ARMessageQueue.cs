@@ -20,6 +20,7 @@ public class ARMessageQueue {
 	}
 
 	private Queue<ARLocalMessage> messageQueue = new Queue<ARLocalMessage>();
+	private int clientCount = 0; //counter for counting clients connected in the scene.
 
 	private ARMessageQueue() {
 			
