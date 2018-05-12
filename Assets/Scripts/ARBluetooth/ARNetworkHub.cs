@@ -81,7 +81,7 @@ public class ARNetworkHub : MonoBehaviour {
 		ConsoleManager.LogMessage("Started discovery");
 	}
 
-	public void RegisterNetworkEvents() {
+	public void RegisterNetworkEvents(bool isServer) {
 		if (NetworkServer.active) {
 			NetworkServer.RegisterHandler (ARNetworkMessage.messageType, this.OnServerHandleMessage);
 			ConsoleManager.LogMessage ("Successfully registered server handler");
@@ -89,29 +89,43 @@ public class ARNetworkHub : MonoBehaviour {
 
 		if (NetworkManager.singleton.client != null) {
 			NetworkManager.singleton.client.RegisterHandler (ARNetworkMessage.messageType, this.OnHandleClientMessage);
-			//ConsoleManager.LogMessage ("Client " + NetworkManager.singleton.client.ToString() + " has successfully started.");
-			this.clientID = NetworkServer.connections.Count;
-			ConsoleManager.LogMessage (TAG + " successfully set client ID to " + this.clientID);
+			ConsoleManager.LogMessage ("Client " + NetworkManager.singleton.client.ToString() + " has successfully started.");
+			
+
 		} else {
 			ConsoleManager.LogMessage ("Did not do anything. No client found.");
 		}
 
-	}
+    }
 	public void SendDummyData() {
 		// Send the message with the tap position to the server, so it can send it to other clients
 		ARNetworkMessage arMsg = new ARNetworkMessage ();
 		arMsg.destination = new Vector3 (5.0f, 5.0f, 5.0f);
 		arMsg.actionType = ARNetworkMessage.ActionType.TEST_DATA;
 		NetworkManager.singleton.client.Send(ARNetworkMessage.messageType, arMsg);
-	}
+
+        //TODO: client ID should be sent AFTER 1st successful connection.
+        if (isServer) {
+            //send ID message to client
+            ARNetworkMessage arMsg2 = new ARNetworkMessage();
+            arMsg2.actionType = ARNetworkMessage.ActionType.SET_ID;
+            arMsg2.clientID = NetworkServer.connections.Count;
+            NetworkManager.singleton.client.Send(ARNetworkMessage.messageType, arMsg2);
+            ConsoleManager.LogMessage("Sending arMSG client ID of " + arMsg2.clientID);
+        }
+    }
 
 	private void OnHandleClientMessage(NetworkMessage networkMsg) {
 		ARNetworkMessage arMessage = networkMsg.ReadMessage<ARNetworkMessage> ();
-
-		if (arMessage.actionType != ARNetworkMessage.ActionType.TEST_DATA) {
+        if(arMessage.actionType == ARNetworkMessage.ActionType.SET_ID) {
+            this.clientID = arMessage.clientID;
+            ConsoleManager.LogMessage(TAG + " successfully set client ID to " + this.clientID);
+        }
+        else if (arMessage.actionType != ARNetworkMessage.ActionType.TEST_DATA) {
 			ARMessageQueue.Instance.EnqueueMessage (arMessage.actionType, arMessage.destination);
 			EventBroadcaster.Instance.PostEvent (EventNames.ARBluetoothEvents.ON_RECEIVED_MESSAGE);
-		} else {
+		}
+        else {
 			ConsoleManager.LogMessage ("[CLIENT] Will not enqueue message. Action type is " + arMessage.actionType);
 		}
 	}
