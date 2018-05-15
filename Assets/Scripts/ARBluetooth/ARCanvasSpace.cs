@@ -40,12 +40,8 @@ public class ARCanvasSpace : MonoBehaviour {
 				//move the piece
 				this.player.MoveToDestination(destination);
 
-				//send the move message
-				ARNetworkMessage arMsg = new ARNetworkMessage ();
-				arMsg.destination = destination;
-				arMsg.actionType  = ARNetworkMessage.ActionType.MOVE;
-				NetworkManager.singleton.client.Send (ARNetworkMessage.messageType, arMsg);
-				ConsoleManager.LogMessage ("Attempting to send destination: " + destination);
+                //send the move message
+                ARNetworkHub.Instance.SendPosition(destination);
 			}
 		}
 	}

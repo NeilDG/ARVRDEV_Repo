@@ -83,7 +83,7 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
         }
 
 		private void OnHandleClientMessage(NetworkMessage networkMsg) {
-			ConsoleManager.LogMessage ("[CLIENT] Received message from " + networkMsg.conn.address + " with message: " + networkMsg.reader.ReadMessage<ARNetworkMessage> ().destination);
+			ConsoleManager.LogMessage ("[CLIENT] Received message from " + networkMsg.conn.address + " with message: " + networkMsg.reader.ReadMessage<ARNetworkMessage> ().position);
 		}
 
 		/// <summary>
@@ -91,7 +91,7 @@ namespace LostPolygon.AndroidBluetoothMultiplayer.Examples.UNet {
 		/// </summary>
 		/// <param name="networkMsg">Network message.</param>
 		private void OnReceivedClientMessage(NetworkMessage networkMsg) {
-			ConsoleManager.LogMessage ("[SERVER] Received message from " + networkMsg.conn.address + " with message: " + networkMsg.reader.ReadMessage<ARNetworkMessage> ().destination);
+			ConsoleManager.LogMessage ("[SERVER] Received message from " + networkMsg.conn.address + " with message: " + networkMsg.reader.ReadMessage<ARNetworkMessage> ().position);
 
 			ARNetworkMessage arMessage = networkMsg.ReadMessage<ARNetworkMessage> ();
 
