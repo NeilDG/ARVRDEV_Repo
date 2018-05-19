@@ -5,6 +5,7 @@ using UnityEngine;
 public class ARController : MonoBehaviour {
 
 	[SerializeField] private float moveSpeed = 1.0f;
+    [SerializeField] private string clientID;
 
 	private bool moving = false;
 	private Vector3 destination;
@@ -32,4 +33,12 @@ public class ARController : MonoBehaviour {
 		this.moving = true;
 		this.destination = destination;
 	}
+
+    public void SetClientID(string clientID) {
+        this.clientID = clientID;
+    }
+
+    public string GetClientID() {
+        return this.clientID;
+    }
 }

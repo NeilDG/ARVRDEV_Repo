@@ -79,4 +79,13 @@ public class ARMessageQueue {
 
 		return arMsgList.ToArray ();
 	}
+
+    public ARLocalMessage[] GetAllMessages() {
+        List<ARLocalMessage> arMsgList = new List<ARLocalMessage>();
+        while(this.messageQueue.Count > 0) {
+            arMsgList.Add(this.messageQueue.Dequeue());
+        }
+
+        return arMsgList.ToArray();
+    }
 }
