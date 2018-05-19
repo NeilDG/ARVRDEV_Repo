@@ -13,7 +13,7 @@ using UnityEngine.Networking;
 /// - The network message gets "consumed" once referenced.
 /// </summary>
 public class ARNetworkHub : MonoBehaviour {
-
+	public const string TAG = "[ARNetworkHub]";
 	private static ARNetworkHub sharedInstance = null;
 	public static ARNetworkHub Instance {
 		get {
@@ -24,8 +24,9 @@ public class ARNetworkHub : MonoBehaviour {
 
 	[SerializeField] private ARNetworkManagerHelper bluetoothHelper;
 
+    private string clientID = ""; //uses the MAC address of the bluetooth device. Only contains a value when successfully connected to server.
 	private bool isServer = false;
-	private bool hasThrownMessage = false;
+	//private bool hasThrownMessage = false;
 
 	void Awake() {
 		sharedInstance = this;
@@ -58,7 +59,7 @@ public class ARNetworkHub : MonoBehaviour {
 	public void StartAsHost() {
 		this.isServer = true;
 		this.bluetoothHelper.StartHost ();
-		ConsoleManager.LogMessage ("Attempting to start as server");
+        ConsoleManager.LogMessage ("Attempting to start as server");
 	}
 
 	public void StartAsClient() {
@@ -69,7 +70,10 @@ public class ARNetworkHub : MonoBehaviour {
 			this.bluetoothHelper.SetCustomDeviceBrowser (null);
 			this.bluetoothHelper.StartClient ();
 		}
+	}
 
+	public string GetClientID() {
+		return this.clientID;
 	}
 
 	public void StartScan() {
@@ -77,35 +81,85 @@ public class ARNetworkHub : MonoBehaviour {
 		ConsoleManager.LogMessage("Started discovery");
 	}
 
-	public void RegisterNetworkEvents() {
-		if (NetworkServer.active) {
-			NetworkServer.RegisterHandler (ARNetworkMessage.messageType, this.OnServerHandleMessage);
-			ConsoleManager.LogMessage ("Successfully registered server handler");
-		}
+    public void RegisterServerEvents() {
+        if (NetworkServer.active) {
+            NetworkServer.RegisterHandler(ARNetworkMessage.messageType, this.OnServerHandleMessage);
+            ConsoleManager.LogMessage("Successfully registered server handler");
+        }
+        if (NetworkManager.singleton.client != null) {
+            NetworkManager.singleton.client.RegisterHandler(ARNetworkMessage.messageType, this.OnHandleClientMessage);
+            ConsoleManager.LogMessage("Host " + NetworkManager.singleton.client.ToString() + " has successfully started.");
+        }
+    }
 
+	public void RegisterClientEvents() {
 		if (NetworkManager.singleton.client != null) {
-			NetworkManager.singleton.client.RegisterHandler (ARNetworkMessage.messageType, this.OnHandleClientMessage);
-			ConsoleManager.LogMessage ("Client " + NetworkManager.singleton.client.ToString() + " has successfully started.");
+            NetworkManager.singleton.client.RegisterHandler(ARNetworkMessage.messageType, this.OnHandleClientMessage);
+            this.clientID = AndroidBluetoothMultiplayer.GetCurrentDevice().Address;
+			ConsoleManager.LogMessage ("Client " + this.clientID + " has successfully started.");
 		} else {
 			ConsoleManager.LogMessage ("Did not do anything. No client found.");
 		}
+    }
 
-	}
+    public void SendPosition(Vector3 position) {
+        ARNetworkMessage arMsg = new ARNetworkMessage();
+        arMsg.actionType = ARNetworkMessage.ActionType.MOVE;
+        arMsg.position = position;
+        arMsg.clientID = this.clientID;
+        NetworkManager.singleton.client.Send(ARNetworkMessage.messageType, arMsg);
+    }
+
+    public void SendPosition(float x, float y, float z) {
+        ARNetworkMessage arMsg = new ARNetworkMessage();
+        arMsg.actionType = ARNetworkMessage.ActionType.MOVE;
+        arMsg.position = new Vector3(x, y, z);
+        arMsg.clientID = this.clientID;
+        NetworkManager.singleton.client.Send(ARNetworkMessage.messageType, arMsg);
+    }
+
+    /// <summary>
+    /// Sends a spawn request to the server. The server relays this message to all clients.
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <param name="z"></param>
+    public void RequestSpawnObject(float x, float y, float z) {
+        ARNetworkMessage arMsg = new ARNetworkMessage();
+        arMsg.actionType = ARNetworkMessage.ActionType.SPAWN_OBJECT;
+        arMsg.position = new Vector3(x, y, z);
+        arMsg.clientID = this.clientID;
+        NetworkManager.singleton.client.Send(ARNetworkMessage.messageType, arMsg);
+    }
+
+    /// <summary>
+    /// Sends a spawn request to the server. The server relays this message to all clients.
+    /// </summary>
+    public void RequestSpawnObject() {
+        ARNetworkMessage arMsg = new ARNetworkMessage();
+        arMsg.actionType = ARNetworkMessage.ActionType.SPAWN_OBJECT;
+        arMsg.position = Vector3.zero;
+        arMsg.clientID = this.clientID;
+        NetworkManager.singleton.client.Send(ARNetworkMessage.messageType, arMsg);
+    }
+
 	public void SendDummyData() {
-		// Send the message with the tap position to the server, so it can send it to other clients
-		ARNetworkMessage arMsg = new ARNetworkMessage ();
-		arMsg.destination = new Vector3 (5.0f, 5.0f, 5.0f);
+        // Send the message with the tap position to the server, so it can send it to other clients
+        /*ARNetworkMessage arMsg = new ARNetworkMessage ();
+		arMsg.position = new Vector3 (5.0f, 5.0f, 5.0f);
 		arMsg.actionType = ARNetworkMessage.ActionType.TEST_DATA;
-		NetworkManager.singleton.client.Send(ARNetworkMessage.messageType, arMsg);
-	}
+        arMsg.clientID = this.clientID;
+		NetworkManager.singleton.client.Send(ARNetworkMessage.messageType, arMsg);*/
+        this.SendPosition(5.0f, 5.0f, 5.0f);
+    }
 
 	private void OnHandleClientMessage(NetworkMessage networkMsg) {
 		ARNetworkMessage arMessage = networkMsg.ReadMessage<ARNetworkMessage> ();
-
-		if (arMessage.actionType != ARNetworkMessage.ActionType.TEST_DATA) {
-			ARMessageQueue.Instance.EnqueueMessage (arMessage.actionType, arMessage.destination);
+        if (arMessage.actionType != ARNetworkMessage.ActionType.TEST_DATA) {
+			ARMessageQueue.Instance.EnqueueMessage (arMessage.clientID, arMessage.actionType, arMessage.position);
 			EventBroadcaster.Instance.PostEvent (EventNames.ARBluetoothEvents.ON_RECEIVED_MESSAGE);
-		} else {
+		}
+        else {
 			ConsoleManager.LogMessage ("[CLIENT] Will not enqueue message. Action type is " + arMessage.actionType);
 		}
 	}
@@ -115,30 +169,31 @@ public class ARNetworkHub : MonoBehaviour {
 	/// </summary>
 	/// <param name="networkMsg">Network message.</param>
 	private void OnServerHandleMessage(NetworkMessage networkMsg) {
-		//ConsoleManager.LogMessage ("[SERVER] Received message from " + networkMsg.conn.address + " with message: " + networkMsg.ReadMessage<ARMessage> ().destination);
+		//ConsoleManager.LogMessage ("[SERVER] Received message from " + networkMsg.conn.address + " with message: " + networkMsg.ReadMessage<ARMessage> ().position);
 
 		ARNetworkMessage arMessage = networkMsg.ReadMessage<ARNetworkMessage> ();
 
 		for (int i = 0; i < NetworkServer.connections.Count; i++) {
 			NetworkConnection connection = NetworkServer.connections [i];
 
-			if (connection != null && connection != networkMsg.conn && !this.hasThrownMessage) {
+			if (connection != null && connection != networkMsg.conn) {
 				connection.Send (ARNetworkMessage.messageType, arMessage);
-				this.hasThrownMessage = true;
-				ConsoleManager.LogMessage ("[NON-LOCAL] Sending position " + arMessage.destination + " to " +connection.address);
+				ConsoleManager.LogMessage ("[NON-LOCAL] Sending message " + arMessage + " to " +connection.address);
 			}
 		}
+
+		//this.hasThrownMessage = true;
 
 		for (int i = 0; i < NetworkServer.localConnections.Count; i++) {
 			NetworkConnection connection = NetworkServer.localConnections [i];
 
-			if (connection != null && connection != networkMsg.conn && !this.hasThrownMessage) {
+			if (connection != null && connection != networkMsg.conn) {
 				connection.Send (ARNetworkMessage.messageType, arMessage);
-				this.hasThrownMessage = true;
-				ConsoleManager.LogMessage ("[LOCAL] Sending position " + arMessage.destination + " to " +connection.address);
+				//this.hasThrownMessage = true;
+				ConsoleManager.LogMessage ("[LOCAL] Sending message " + arMessage + " to " +connection.address);
 			}
 		}
 
-		this.hasThrownMessage = false;
+		//this.hasThrownMessage = false;
 	}
 }

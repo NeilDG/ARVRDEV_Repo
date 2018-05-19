@@ -20,6 +20,7 @@ public class ARMessageQueue {
 	}
 
 	private Queue<ARLocalMessage> messageQueue = new Queue<ARLocalMessage>();
+	private int clientCount = 0; //counter for counting clients connected in the scene.
 
 	private ARMessageQueue() {
 			
@@ -39,11 +40,11 @@ public class ARMessageQueue {
 	/// </summary>
 	/// <param name="actionType">Action type.</param>
 	/// <param name="position">Position.</param>
-	public void EnqueueMessage(ARNetworkMessage.ActionType actionType, Vector3 position) {
-		ARLocalMessage arMsg = new ARLocalMessage (actionType, position);
+	public void EnqueueMessage(string clientID, ARNetworkMessage.ActionType actionType, Vector3 position) {
+		ARLocalMessage arMsg = new ARLocalMessage (clientID,actionType, position);
 		this.messageQueue.Enqueue (arMsg);
 
-		ConsoleManager.LogMessage (TAG + " successfully enqueued message");
+		ConsoleManager.LogMessage (TAG + " successfully enqueued message of type " +arMsg.GetActionType());
 	}
 
 	/// <summary>
@@ -78,4 +79,13 @@ public class ARMessageQueue {
 
 		return arMsgList.ToArray ();
 	}
+
+    public ARLocalMessage[] GetAllMessages() {
+        List<ARLocalMessage> arMsgList = new List<ARLocalMessage>();
+        while(this.messageQueue.Count > 0) {
+            arMsgList.Add(this.messageQueue.Dequeue());
+        }
+
+        return arMsgList.ToArray();
+    }
 }

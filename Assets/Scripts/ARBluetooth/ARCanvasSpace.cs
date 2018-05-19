@@ -7,22 +7,26 @@ using UnityEngine.Networking;
 /// Simple script that allows movement of an object through tap.
 /// </summary>
 public class ARCanvasSpace : MonoBehaviour {
-	public const string TAG = "ARCanvasSpace";
+	public const string TAG = "[ARCanvasSpace]";
 
 	[SerializeField] private Camera arCamera;
 	[SerializeField] private ARController player;
-	[SerializeField] private ARController opponent;
+	[SerializeField] private ARController opponentCopy;
+
+    private bool firstRun = false;
+
+	private Dictionary<string, ARController> opponents = new Dictionary<string, ARController>();
 
 	// Use this for initialization
 	void Start () {
-		//set coordinates
-		this.opponent.transform.localPosition = this.player.transform.localPosition;
+        //set coordinates
+        this.opponentCopy.gameObject.SetActive(false);
 		EventBroadcaster.Instance.AddObserver (EventNames.ARBluetoothEvents.ON_RECEIVED_MESSAGE, this.OnReceivedMessage);
 	}
 
 	void OnDestroy() {
 		EventBroadcaster.Instance.RemoveObserver (EventNames.ARBluetoothEvents.ON_RECEIVED_MESSAGE);
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -38,21 +42,47 @@ public class ARCanvasSpace : MonoBehaviour {
 				//move the piece
 				this.player.MoveToDestination(destination);
 
-				//send the move message
-				ARNetworkMessage arMsg = new ARNetworkMessage ();
-				arMsg.destination = destination;
-				arMsg.actionType  = ARNetworkMessage.ActionType.MOVE;
-				NetworkManager.singleton.client.Send (ARNetworkMessage.messageType, arMsg);
-				ConsoleManager.LogMessage ("Attempting to send destination: " + destination);
+                //send the move message
+                ARNetworkHub.Instance.SendPosition(destination);
 			}
 		}
 	}
 
+    /// <summary>
+    /// Handles initial messaages received upon starting the game. This should contains spawn requests
+    /// </summary>
+    private void HandleInitialMessages() {
+        ARLocalMessage[] messages = ARMessageQueue.Instance.GetAllMessages();
+
+        for(int i = 0; i < messages.Length; i++) {
+            if(messages[i].GetActionType() == ARNetworkMessage.ActionType.SPAWN_OBJECT) {
+                ConsoleManager.LogMessage(TAG + " Spawning opponent for " + messages[i].GetClientID());
+            }
+        }
+
+    }
+
 	private void OnReceivedMessage() {
+        if(this.firstRun == false) {
+            this.player.SetClientID(ARNetworkHub.Instance.GetClientID());
+            this.firstRun = true;
+        }
+
 		//process message here
 		ARLocalMessage localMsg = ARMessageQueue.Instance.GetLatestMessage();
-		ConsoleManager.LogMessage (TAG + " received message with type of " + localMsg.GetActionType ());
+        //ConsoleManager.LogMessage (TAG + " received message with type of " + localMsg.GetActionType ());
+        if (localMsg.GetActionType() == ARNetworkMessage.ActionType.SPAWN_OBJECT && !this.opponents.ContainsKey(localMsg.GetClientID())) {
+            ConsoleManager.LogMessage(TAG + " Spawning opponent for " + localMsg.GetClientID());
+            ARController opponent = GameObject.Instantiate<ARController>(this.opponentCopy, this.opponentCopy.transform.parent);
+            opponent.gameObject.transform.position = this.player.transform.position;
+            opponent.gameObject.SetActive(true);
+            opponent.SetClientID(localMsg.GetClientID());
+            this.opponents.Add(localMsg.GetClientID(), opponent);
 
-		this.opponent.MoveToDestination (localMsg.GetPosition ());
+        }
+        else if(localMsg.GetActionType() == ARNetworkMessage.ActionType.MOVE) {
+            this.opponents[localMsg.GetClientID()].MoveToDestination(localMsg.GetPosition());
+            //this.opponent.MoveToDestination(localMsg.GetPosition());
+        } 
 	}
 }
