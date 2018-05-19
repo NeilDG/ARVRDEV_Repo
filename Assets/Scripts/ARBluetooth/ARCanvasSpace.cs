@@ -71,7 +71,7 @@ public class ARCanvasSpace : MonoBehaviour {
 		//process message here
 		ARLocalMessage localMsg = ARMessageQueue.Instance.GetLatestMessage();
         //ConsoleManager.LogMessage (TAG + " received message with type of " + localMsg.GetActionType ());
-        if (localMsg.GetActionType() == ARNetworkMessage.ActionType.SPAWN_OBJECT) {
+        if (localMsg.GetActionType() == ARNetworkMessage.ActionType.SPAWN_OBJECT && !this.opponents.ContainsKey(localMsg.GetClientID())) {
             ConsoleManager.LogMessage(TAG + " Spawning opponent for " + localMsg.GetClientID());
             ARController opponent = GameObject.Instantiate<ARController>(this.opponentCopy, this.opponentCopy.transform.parent);
             opponent.gameObject.transform.position = this.player.transform.position;
@@ -80,7 +80,7 @@ public class ARCanvasSpace : MonoBehaviour {
             this.opponents.Add(localMsg.GetClientID(), opponent);
 
         }
-        else {
+        else if(localMsg.GetActionType() == ARNetworkMessage.ActionType.MOVE) {
             this.opponents[localMsg.GetClientID()].MoveToDestination(localMsg.GetPosition());
             //this.opponent.MoveToDestination(localMsg.GetPosition());
         } 
