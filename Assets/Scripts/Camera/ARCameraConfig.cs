@@ -14,7 +14,7 @@ public class ARCameraConfig : MonoBehaviour {
 	void Update () {
 		if (Input.GetMouseButtonDown (0)) {
 			CameraDevice.Instance.SetFocusMode (CameraDevice.FocusMode.FOCUS_MODE_TRIGGERAUTO);
-		}
+        }
 	}
 
 
@@ -33,5 +33,17 @@ public class ARCameraConfig : MonoBehaviour {
 				"\n the format may be unsupported by your device;" +
 				"\n consider using a different pixel format.");
 		}
-	}
+
+        // Get the fields
+        IEnumerable cameraFields = CameraDevice.Instance.GetCameraFields();
+        // Print fields to device logs
+        foreach (CameraDevice.CameraField field in cameraFields) {
+            Debug.Log("Key: " + field.Key + "; Type: " + field.Type.ToString());
+
+        }
+
+        CameraDevice.Instance.SetField("exposure-compensation", "1");
+        CameraDevice.Instance.SetField("auto-exposure", "true");
+
+    }
 }
