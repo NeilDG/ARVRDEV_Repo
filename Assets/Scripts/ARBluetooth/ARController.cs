@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ARController : MonoBehaviour {
 
+ 
 	[SerializeField] private float moveSpeed = 1.0f;
     [SerializeField] private string clientID;
 
