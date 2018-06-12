@@ -20,6 +20,13 @@ public class InfoScreen : View {
 	public void SetMessage(string msgDisplay) {
 		this.displayText.text = msgDisplay;
 	}
+    
+    /// <summary>
+    /// For camera control settings
+    /// </summary>
+    public void OnSettingsClicked() {
+        ViewHandler.Instance.Show(ViewNames.CAMERA_SETTINGS_SCREEN_NAME);
+    }
 		
 	public override void OnRootScreenBack ()
 	{
