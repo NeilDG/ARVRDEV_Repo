@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BluetoothARScene.unity
     guid: d108c5df8946fca4b9b81ce74641923d
+  - enabled: 1
+    path: Assets/Scenes/ARVideoPlayback.unity
+    guid: 5155903fe5d60ed45bc77012a514b904
   - enabled: 0
     path: Assets/SamplesResources/Scenes/3-UserDefinedTargets.unity
     guid: 89ed636faaaf34959983482a021ac4e6

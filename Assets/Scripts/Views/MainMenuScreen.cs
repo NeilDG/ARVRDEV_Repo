@@ -36,6 +36,10 @@ public class MainMenuScreen : View {
 		LoadManager.Instance.LoadScene (SceneNames.BLUETOOTH_AR_SCENE);
 	}
 
+    public void OnARVideoPlaybackClicked() {
+        LoadManager.Instance.LoadScene(SceneNames.AR_VIDEO_PLAYBACK);
+    }
+
 	public override void OnRootScreenBack ()
 	{
 		DialogInterface dialog = DialogBuilder.Create (DialogBuilder.DialogType.CHOICE_DIALOG);
