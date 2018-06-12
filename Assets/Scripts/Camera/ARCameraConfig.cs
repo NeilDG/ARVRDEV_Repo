@@ -39,11 +39,7 @@ public class ARCameraConfig : MonoBehaviour {
         // Print fields to device logs
         foreach (CameraDevice.CameraField field in cameraFields) {
             Debug.Log("Key: " + field.Key + "; Type: " + field.Type.ToString());
-
         }
-
-        CameraDevice.Instance.SetField("exposure-compensation", "1");
-        CameraDevice.Instance.SetField("auto-exposure", "true");
 
     }
 }

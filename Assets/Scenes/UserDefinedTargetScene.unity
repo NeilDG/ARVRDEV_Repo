@@ -1798,7 +1798,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d9f7a5c863cdd44094feb3fea8611ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayMsg: 
+  displayMsg: Point your camera on a surface with distinct textures or features, and
+    then press <b>SCAN</b>.  This will attempt to augment the AR scene on the surface.
 --- !u!114 &973274050
 MonoBehaviour:
   m_ObjectHideFlags: 0
