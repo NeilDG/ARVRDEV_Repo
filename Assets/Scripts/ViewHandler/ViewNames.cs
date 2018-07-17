@@ -12,8 +12,10 @@ public class ViewNames {
 	public const string SCROLL_DEMO_SCREEN = "ScrollDemoScreen";
 	public const string INFO_SCREEN_NAME = "InfoScreen";
     public const string CAMERA_SETTINGS_SCREEN_NAME = "CameraSettingsScreen";
+    public const string VIDEO_DEBUG_SCREEN = "VideoDebugScreen";
 
-	public class DialogNames {
+
+    public class DialogNames {
 		public const string TWO_CHOICE_DIALOG_NAME = "TwoChoiceDialog";
 		public const string NOTIFICATION_DIALOG_NAME = "NotificationDialog";
 	}
