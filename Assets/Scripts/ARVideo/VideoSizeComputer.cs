@@ -21,6 +21,7 @@ public class VideoSizeComputer : MonoBehaviour {
 
     private bool firstTargetDetected = false;
     private bool secondTargetDetected = false;
+    private bool disjointed = false;
 
     private float ticks = 0.0f;
     private float timeout = 1.0f;
@@ -35,21 +36,28 @@ public class VideoSizeComputer : MonoBehaviour {
     private void Awake() {
         sharedInstance = this;
     }
-
-    private void OnDestroy() {
-        sharedInstance = null;
-    }
-
+   
     // Use this for initialization
     void Start () {
         this.debugScreen = (VideoDebugScreen) ViewHandler.Instance.Show(ViewNames.VIDEO_DEBUG_SCREEN);
 
         this.baseVideoSize = this.videoPlane.localScale;
         this.videoPlane.gameObject.SetActive(false);
+
+        EventBroadcaster.Instance.AddObserver(EventNames.VideoAREvents.ON_VIDEO_DISJOINTED, this.OnVideoDisjointed);
+        EventBroadcaster.Instance.AddObserver(EventNames.VideoAREvents.ON_VIDEO_ANCHORED, this.OnVideoAnchored);
+        
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void OnDestroy() {
+        EventBroadcaster.Instance.RemoveObserver(EventNames.VideoAREvents.ON_VIDEO_DISJOINTED);
+        EventBroadcaster.Instance.RemoveObserver(EventNames.VideoAREvents.ON_VIDEO_ANCHORED);
+        sharedInstance = null;
+    }
+
+
+    // Update is called once per frame
+    void Update () {
 
         this.ticks += Time.deltaTime;
 
@@ -65,6 +73,12 @@ public class VideoSizeComputer : MonoBehaviour {
 	}
 
     private void Resize() {
+
+        //do not resize if video has been disjointed.
+        if(this.disjointed) {
+            return;
+        }
+
         Vector3 newScale = Vector3.zero;
         newScale.y = this.baseVideoSize.y;
 
@@ -73,6 +87,14 @@ public class VideoSizeComputer : MonoBehaviour {
 
         this.videoPlane.localScale = newScale;
         this.videoPlane.gameObject.SetActive(true);
+    }
+
+    private void OnVideoDisjointed() {
+        this.disjointed = true;
+    }
+
+    private void OnVideoAnchored() {
+        this.disjointed = false;
     }
 
     public void OnDetected(VideoTargetRef videoTargetRef) {

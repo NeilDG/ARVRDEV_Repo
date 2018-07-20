@@ -32,24 +32,11 @@ public class EventNames {
 		public const string ON_DELETE_ALL = "ON_DELETE_ALL";
 	}
 
-	public class X01_Events {
-		public const string ON_FIRST_SCAN = "ON_FIRST_SCAN";
-		public const string ON_FINAL_SCAN = "ON_FINAL_SCAN";
-		public const string EXTENDED_TRACK_ON_SCAN = "EXTENDED_TRACK_ON_SCAN";
-		public const string EXTENDED_TRACK_REMOVED = "EXTENDED_TRACK_REMOVED";
-	}
+    public class VideoAREvents {
+        public const string ON_VIDEO_DISJOINTED = "ON_VIDEO_DISJOINTED";
+        public const string ON_VIDEO_ANCHORED = "ON_VIDEO_ANCHORED";
+    }
 
-	public class X22_Events {
-		public const string ON_FIRST_SCAN = "ON_FIRST_SCAN";
-		public const string ON_FINAL_SCAN = "ON_FINAL_SCAN";
-		public const string EXTENDED_TRACK_ON_SCAN = "EXTENDED_TRACK_ON_SCAN";
-		public const string EXTENDED_TRACK_REMOVED = "EXTENDED_TRACK_REMOVED";
-	}
-
-	public class S18_Events {
-		public const string ON_FIRST_SCAN = "FIRST_TARGET_SCAN";
-		public const string ON_FINAL_SCAN = "ON_FINAL_SCAN";
-	}
 }
 
 
