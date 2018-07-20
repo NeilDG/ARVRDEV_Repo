@@ -6,10 +6,14 @@ using UnityEngine.UI;
 public class VideoDebugScreen : View {
 
     [SerializeField] private Text debugText;
+    [SerializeField] private Text disjoinText;
+
+    private bool disjointed = false;
 
 	// Use this for initialization
 	void Start () {
         this.debugText.text = "No targets detected. Cannot print distance.";
+        this.disjoinText.text = "Disjoint";
 	}
 	
 	// Update is called once per frame
@@ -22,7 +26,18 @@ public class VideoDebugScreen : View {
     }
 
     public void OnDisjointClicked() {
-        EventBroadcaster.Instance.PostEvent(EventNames.VideoAREvents.ON_VIDEO_DISJOINTED);
+
+        if(this.disjointed) {
+            this.disjointed = false;
+            this.disjoinText.text = "DISJOINT";
+            EventBroadcaster.Instance.PostEvent(EventNames.VideoAREvents.ON_VIDEO_ANCHORED);
+        }
+        else {
+            this.disjointed = true;
+            this.disjoinText.text = "ANCHOR";
+            EventBroadcaster.Instance.PostEvent(EventNames.VideoAREvents.ON_VIDEO_DISJOINTED);
+        }
+
     }
 
     public override void OnRootScreenBack() {

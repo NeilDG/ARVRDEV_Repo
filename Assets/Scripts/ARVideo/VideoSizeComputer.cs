@@ -45,10 +45,13 @@ public class VideoSizeComputer : MonoBehaviour {
         this.videoPlane.gameObject.SetActive(false);
 
         EventBroadcaster.Instance.AddObserver(EventNames.VideoAREvents.ON_VIDEO_DISJOINTED, this.OnVideoDisjointed);
+        EventBroadcaster.Instance.AddObserver(EventNames.VideoAREvents.ON_VIDEO_ANCHORED, this.OnVideoAnchored);
+        
 	}
 
     private void OnDestroy() {
         EventBroadcaster.Instance.RemoveObserver(EventNames.VideoAREvents.ON_VIDEO_DISJOINTED);
+        EventBroadcaster.Instance.RemoveObserver(EventNames.VideoAREvents.ON_VIDEO_ANCHORED);
         sharedInstance = null;
     }
 
@@ -88,6 +91,10 @@ public class VideoSizeComputer : MonoBehaviour {
 
     private void OnVideoDisjointed() {
         this.disjointed = true;
+    }
+
+    private void OnVideoAnchored() {
+        this.disjointed = false;
     }
 
     public void OnDetected(VideoTargetRef videoTargetRef) {

@@ -128,6 +128,7 @@ MonoBehaviour:
   entranceType: 0
   exitType: 0
   debugText: {fileID: 114341348895179720}
+  disjoinText: {fileID: 114875279987018218}
 --- !u!114 &114148785413241240
 MonoBehaviour:
   m_ObjectHideFlags: 1
