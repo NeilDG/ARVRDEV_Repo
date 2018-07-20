@@ -21,6 +21,10 @@ public class VideoDebugScreen : View {
         this.debugText.text = "Target Distance: "+distance;
     }
 
+    public void OnDisjointClicked() {
+        EventBroadcaster.Instance.PostEvent(EventNames.VideoAREvents.ON_VIDEO_DISJOINTED);
+    }
+
     public override void OnRootScreenBack() {
         base.OnRootScreenBack();
         TwoChoiceDialog twoChoiceDialog = (TwoChoiceDialog)DialogBuilder.Create(DialogBuilder.DialogType.CHOICE_DIALOG);
