@@ -27,7 +27,7 @@ public class VideoSizeComputer : MonoBehaviour {
     private float timeout = 1.0f;
 
     private float distanceApart = 0.0f; //the distance between the first vs second target
-    private const float SCALING_FACTOR = 0.2f;
+    private const float SCALING_FACTOR = 1.5f;
 
     private VideoDebugScreen debugScreen;
 
