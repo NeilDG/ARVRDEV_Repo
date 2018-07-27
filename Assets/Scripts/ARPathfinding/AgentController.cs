@@ -27,7 +27,7 @@ public class AgentController : MonoBehaviour {
 	}
 
     private void OnBeaconDetected(Parameters parameters) {
-        Transform target = parameters.GetObjectExtra(BeaconTarget.BEACON_TRANSFORM_KEY) as Transform;
+        Vector3 target = (Vector3) parameters.GetObjectExtra(BeaconTarget.BEACON_POSITION_KEY);
         this.MoveAllAgents(target);
     }
 
@@ -41,11 +41,13 @@ public class AgentController : MonoBehaviour {
         Debug.Log("Platform hidden. Agents hidden.");
     }
 
-    private void MoveAllAgents(Transform target) {
+    private void MoveAllAgents(Vector3 target) {
         for(int i = 0; i < this.aiAgents.Length; i++) {
-            this.aiAgents[i].SetTarget(target);
-            this.aiAgents[i].agent.SetDestination(target.localPosition);
-            Debug.Log("Set agents target to position: " + target.position.ToString());
+            this.aiAgents[i].SetDestination(target);
+            Debug.Log("Set agents target to position: " + target.ToString());
+
+            InfoScreen infoScreen = (InfoScreen) ViewHandler.Instance.FindActiveView(ViewNames.INFO_SCREEN_NAME);
+            infoScreen.SetMessage("Set agents target to position: " + target.ToString());
         }
     }
 

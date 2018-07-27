@@ -25,7 +25,7 @@ public class PlatformTarget : ImageTargetBehaviour {
             EventBroadcaster.Instance.PostEvent(EventNames.ARPathFindEvents.ON_PLATFORM_DETECTED);
 
         }
-        else if (newStatus == Status.NO_POSE) {
+        else if (newStatus == Status.NO_POSE && this.tracked) {
             this.tracked = false;
             EventBroadcaster.Instance.PostEvent(EventNames.ARPathFindEvents.ON_PLATFORM_HIDDEN);
         }
