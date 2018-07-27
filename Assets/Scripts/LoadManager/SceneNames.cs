@@ -18,6 +18,7 @@ public class SceneNames {
 	public const string USER_DEFINED_TARGET_SCENE = "UserDefinedTargetScene";
 	public const string BLUETOOTH_AR_SCENE = "BluetoothARScene";
     public const string AR_VIDEO_PLAYBACK = "ARVideoPlayback";
+    public const string AR_PATH_FINDING = "ARPathfinding";
 
     //X01 scenes
     public const string X01_MAIN_SCENE = "X01_MainMenu";

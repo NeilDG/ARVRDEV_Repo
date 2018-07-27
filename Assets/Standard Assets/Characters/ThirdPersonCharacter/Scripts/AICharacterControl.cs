@@ -39,5 +39,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             this.target = target;
         }
+
+        public void SetDestination(Vector3 position) {
+            if(this.agent.isOnNavMesh) {
+                this.agent.SetDestination(position);
+            }
+           
+        }
     }
 }

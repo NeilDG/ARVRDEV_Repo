@@ -37,6 +37,12 @@ public class EventNames {
         public const string ON_VIDEO_ANCHORED = "ON_VIDEO_ANCHORED";
     }
 
+    public class ARPathFindEvents {
+        public const string ON_PLATFORM_DETECTED = "ON_PLATFORM_DETECTED";
+        public const string ON_PLATFORM_HIDDEN = "ON_PLATFORM_HIDDEN";
+        public const string ON_BEACON_DETECTED = "ON_BEACON_DETECTED";
+    }
+
 }
 
 

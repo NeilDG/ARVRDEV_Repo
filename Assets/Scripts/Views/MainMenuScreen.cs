@@ -40,6 +40,10 @@ public class MainMenuScreen : View {
         LoadManager.Instance.LoadScene(SceneNames.AR_VIDEO_PLAYBACK);
     }
 
+    public void OnARPathfindingClicked() {
+        LoadManager.Instance.LoadScene(SceneNames.AR_PATH_FINDING);
+    }
+
 	public override void OnRootScreenBack ()
 	{
 		DialogInterface dialog = DialogBuilder.Create (DialogBuilder.DialogType.CHOICE_DIALOG);
