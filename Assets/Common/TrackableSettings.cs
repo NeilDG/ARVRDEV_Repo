@@ -43,7 +43,7 @@ public class TrackableSettings : MonoBehaviour
                 {
                     ObjectTarget target = tb.Trackable as ObjectTarget;
 
-                    if (enableExtendedTracking)
+                    /*if (enableExtendedTracking)
                     {
                         success = target.StartExtendedTracking();
 
@@ -55,7 +55,7 @@ public class TrackableSettings : MonoBehaviour
                     else
                     {
                         target.StopExtendedTracking();
-                    }
+                    }*/
                 }
             }
         }
