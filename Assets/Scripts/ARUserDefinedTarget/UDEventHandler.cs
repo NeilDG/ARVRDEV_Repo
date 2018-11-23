@@ -75,8 +75,8 @@ public class UDEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler{
         this.objectTracker.ActivateDataSet(this.userDefinedSet);
         
         this.objectTracker.Stop();
-        this.imageTargetTemplate.ImageTarget.StartExtendedTracking();
-        this.objectTracker.ResetExtendedTracking();
+        //this.imageTargetTemplate.ImageTarget.StartExtendedTracking();
+        //this.objectTracker.ResetExtendedTracking();
         this.objectTracker.Start();
         
 

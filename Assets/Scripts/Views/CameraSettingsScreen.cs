@@ -12,6 +12,8 @@ public class CameraSettingsScreen : View {
 	// Use this for initialization
 	void Start () {
         this.SetSliderValues();
+        CameraDevice.Instance.Init();
+        CameraDevice.Instance.Start();
     }
 	
 	// Update is called once per frame
@@ -23,6 +25,7 @@ public class CameraSettingsScreen : View {
         string minExpValue;
         string maxExpValue;
         string currExpValue;
+        
         CameraDevice.Instance.GetField("min-exposure-compensation", out minExpValue);
         CameraDevice.Instance.GetField("max-exposure-compensation", out maxExpValue);
         CameraDevice.Instance.GetField("exposure-compensation", out currExpValue);

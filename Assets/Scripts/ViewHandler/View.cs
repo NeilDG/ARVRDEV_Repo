@@ -30,6 +30,8 @@ public class View : MonoBehaviour {
 
 	public virtual void Show() {
 
+        this.gameObject.SetActive(true);
+
 		if(this.viewAnimation == null) {
 			DOViewAnimation hoViewAnimation = new DOViewAnimation(this.rectTransform,this);
 			hoViewAnimation.SetAnimationType(this.entranceType, this.exitType);
