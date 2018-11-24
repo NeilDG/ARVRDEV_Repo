@@ -32,9 +32,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ARPathfinding.unity
     guid: 98d1dd5389df4f84181427841cb40d9c
-  - enabled: 0
-    path: Assets/SamplesResources/Scenes/3-UserDefinedTargets.unity
-    guid: 89ed636faaaf34959983482a021ac4e6
+  - enabled: 1
+    path: Assets/Scenes/ARMoleculeViewer.unity
+    guid: 73c324e7425810b48887ca8970a13edd
   - enabled: 0
     path: Assets/Imported/AndroidBluetoothMultiplayer/Demos/Generic/Scenes/BluetoothDemoMenu.unity
     guid: c5a4c6612e053894aae4b1e9582f57bd
