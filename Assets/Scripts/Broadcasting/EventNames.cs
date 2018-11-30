@@ -43,6 +43,10 @@ public class EventNames {
         public const string ON_BEACON_DETECTED = "ON_BEACON_DETECTED";
     }
 
+    public class ARMoleculeEvents {
+        public const string ON_BTN_STRUCTURE_CLICKED = "ON_BTN_STRUCTURE_CLICKED";
+    }
+
 }
 
 
