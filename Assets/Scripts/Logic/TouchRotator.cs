@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class TouchRotator : MonoBehaviour {
 	
-	[SerializeField] private float _sensitivity;
-	[SerializeField] private Vector3 _mouseReference;
-	[SerializeField] private Vector3 _mouseOffset;
+	[SerializeField] private float sensitivity = 5.0f;
 	[SerializeField] private Vector3 _rotation;
 	[SerializeField] private bool _isRotating;
 
-	void Start ()
+    private Vector3 _mouseReference;
+    private Vector3 _mouseOffset;
+
+    private const float AMPLIFY = 2.0f;
+    private float inertiaX = 0.0f;
+    private float inertiaY = 0.0f;
+
+    private float rotX = 0.0f;
+    private float rotY = 0.0f;
+
+    void Start ()
 	{
 		_rotation = Vector3.zero;
 	}
 
-	void Update()
+    void Update()
 	{
 		if (Input.GetMouseButtonDown (0) && this._isRotating == false) {
 			this._isRotating = true;
@@ -23,40 +31,46 @@ public class TouchRotator : MonoBehaviour {
 
 		} else if (Input.GetMouseButtonUp (0)) {
 			this._isRotating = false;
-			//this.GetComponent<Rigidbody> ().AddTorque (this._rotation);
-		}
+            this.inertiaX = this._mouseOffset.x;
+            this.inertiaY = this._mouseOffset.y;
+        }
 
-		if(_isRotating)
+        if (_isRotating)
 		{
 			// offset
 			_mouseOffset = (Input.mousePosition - _mouseReference);
 
-			// apply rotation
-			//_rotation.y = -(_mouseOffset.x + _mouseOffset.y) * _sensitivity;
-			Vector3 force = Vector3.zero;
-			force.z = -(_mouseOffset.x + _mouseOffset.y) * _sensitivity;
-			this.GetComponent<Rigidbody> ().AddTorque (force);
+            this.rotX = _mouseOffset.x * this.sensitivity * Mathf.Deg2Rad;
+            this.rotY = _mouseOffset.y * this.sensitivity * Mathf.Deg2Rad;
 
-			// rotate
-			transform.Rotate(_rotation);
+            this.transform.Rotate(Vector3.up, -rotX);
+            this.transform.Rotate(Vector3.right, rotY);
 
-			// store mouse
-			_mouseReference = Input.mousePosition;
+            // store mouse
+            _mouseReference = Input.mousePosition;
 		}
-	}
 
-	/*void OnMouseDown()
-	{
-		// rotating flag
-		_isRotating = true;
+        if (this.inertiaX > 0.0f) {
+            this.rotX = this.sensitivity * Mathf.Deg2Rad * this.inertiaX;
+            this.inertiaX -= Time.deltaTime * this.sensitivity * AMPLIFY;
+            this.transform.Rotate(Vector3.up, -rotX);  
+        }
+        else if(this.inertiaX < 0.0f) {
+            this.rotX = this.sensitivity * Mathf.Deg2Rad * this.inertiaX;
+            this.inertiaX += Time.deltaTime * this.sensitivity * AMPLIFY;
+            this.transform.Rotate(Vector3.up, -rotX);
+        }
+        
+        if (this.inertiaY > 0.0f) {
+            this.rotY = this.sensitivity * Mathf.Deg2Rad * this.inertiaY;
+            this.inertiaY -= Time.deltaTime * this.sensitivity * AMPLIFY;
+            this.transform.Rotate(Vector3.right, rotY);
+        }
+        else if (this.inertiaY < 0.0f) {
+            this.rotY = this.sensitivity * Mathf.Deg2Rad * this.inertiaY;
+            this.inertiaY += Time.deltaTime * this.sensitivity * AMPLIFY;
+            this.transform.Rotate(Vector3.right, rotY);
+        }
 
-		// store mouse
-		_mouseReference = Input.mousePosition;
-	}
-
-	void OnMouseUp()
-	{
-		// rotating flag
-		_isRotating = false;
-	}*/
+    }
 }

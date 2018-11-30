@@ -44,6 +44,10 @@ public class MainMenuScreen : View {
         LoadManager.Instance.LoadScene(SceneNames.AR_PATH_FINDING);
     }
 
+    public void OnMoleculeViewerClicked() {
+        LoadManager.Instance.LoadScene(SceneNames.AR_MOLECULE_VIEWER);
+    }
+
 	public override void OnRootScreenBack ()
 	{
 		DialogInterface dialog = DialogBuilder.Create (DialogBuilder.DialogType.CHOICE_DIALOG);
