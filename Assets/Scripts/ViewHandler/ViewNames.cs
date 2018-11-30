@@ -13,6 +13,7 @@ public class ViewNames {
 	public const string INFO_SCREEN_NAME = "InfoScreen";
     public const string CAMERA_SETTINGS_SCREEN_NAME = "CameraSettingsScreen";
     public const string VIDEO_DEBUG_SCREEN = "VideoDebugScreen";
+    public const string MOLECULE_SELECTION_SCREEN = "SelectionScreen";
 
 
     public class DialogNames {
