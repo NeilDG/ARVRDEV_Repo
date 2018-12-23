@@ -17,6 +17,8 @@ ModelImporter:
     2100010: vmd_mat_cindex_4
     2100012: vmd_mat_cindex_5
     2100014: vmd_mat_cindex_8
+    2100016: vmd_axesMat
+    2100018: vmd_mol0_rep0Mat
     2300000: vmd_axes
     2300002: vmd_mol0_rep0
     3300000: vmd_axes
