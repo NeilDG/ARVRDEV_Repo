@@ -20,6 +20,7 @@ public class SceneNames {
     public const string AR_VIDEO_PLAYBACK = "ARVideoPlayback";
     public const string AR_PATH_FINDING = "ARPathfinding";
     public const string AR_MOLECULE_VIEWER = "ARMoleculeViewer";
+    public const string AR_WRECKING_BALL_SCENE = "ARWreckingBallScene";
 
     //X01 scenes
     public const string X01_MAIN_SCENE = "X01_MainMenu";
