@@ -48,6 +48,10 @@ public class MainMenuScreen : View {
         LoadManager.Instance.LoadScene(SceneNames.AR_MOLECULE_VIEWER);
     }
 
+    public void OnWreckBallClicked() {
+        LoadManager.Instance.LoadScene(SceneNames.AR_WRECKING_BALL_SCENE);
+    }
+
 	public override void OnRootScreenBack ()
 	{
 		DialogInterface dialog = DialogBuilder.Create (DialogBuilder.DialogType.CHOICE_DIALOG);
