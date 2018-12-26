@@ -5,13 +5,13 @@ using Vuforia;
 
 public class WreckingBallTargetHandler : ImageTargetBehaviour {
 
-    private GameObject playContainer;
+    private WreckingBallPlacer wreckingBallPlacer;
 
 	// Use this for initialization
 	void Start () {
-        this.playContainer = this.transform.Find("Container").gameObject;
-        this.playContainer.SetActive(false);
-	}
+        this.wreckingBallPlacer = this.transform.Find("WBPlatform").GetComponent<WreckingBallPlacer>();
+        this.wreckingBallPlacer.gameObject.SetActive(false);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -21,12 +21,13 @@ public class WreckingBallTargetHandler : ImageTargetBehaviour {
     public override void OnTrackerUpdate(Status newStatus) {
         base.OnTrackerUpdate(newStatus);
         if (newStatus == Status.TRACKED) {
-            this.playContainer.SetActive(true);
+            this.wreckingBallPlacer.gameObject.SetActive(true);
+            this.wreckingBallPlacer.PlotWreckingBall();
         }
         else if(newStatus == Status.NO_POSE) {
-            this.playContainer.SetActive(false);
+            this.wreckingBallPlacer.gameObject.SetActive(false);
+            this.wreckingBallPlacer.MarkTargetLost();
         }
     }
-
 
 }

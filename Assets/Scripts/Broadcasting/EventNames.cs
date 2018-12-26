@@ -47,6 +47,10 @@ public class EventNames {
         public const string ON_BTN_STRUCTURE_CLICKED = "ON_BTN_STRUCTURE_CLICKED";
     }
 
+    public class ARWreckBallEvents {
+        public const string ON_RESET_CLICKED = "ON_RESET_CLICKED";
+    }
+
 }
 
 
