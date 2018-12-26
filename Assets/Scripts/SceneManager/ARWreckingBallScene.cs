@@ -10,6 +10,7 @@ public class ARWreckingBallScene : MonoBehaviour {
     void Start () {
         InfoScreen infoScreen = (InfoScreen)ViewHandler.Instance.Show(ViewNames.INFO_SCREEN_NAME);
         infoScreen.SetMessage(this.displayMsg);
+
     }
 	
 	// Update is called once per frame
