@@ -52,6 +52,10 @@ public class MainMenuScreen : View {
         LoadManager.Instance.LoadScene(SceneNames.AR_WRECKING_BALL_SCENE);
     }
 
+    public void OnARBoxClicked() {
+        LoadManager.Instance.LoadScene(SceneNames.AR_BOX_SCENE);
+    }
+
 	public override void OnRootScreenBack ()
 	{
 		DialogInterface dialog = DialogBuilder.Create (DialogBuilder.DialogType.CHOICE_DIALOG);

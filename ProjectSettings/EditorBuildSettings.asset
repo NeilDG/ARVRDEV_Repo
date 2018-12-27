@@ -38,6 +38,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ARWreckingBallScene.unity
     guid: 918069fa8e6d2604fa1d033f09d1284d
+  - enabled: 1
+    path: Assets/Scenes/ARBoxScene.unity
+    guid: 032296b97e0478849b3d22979dfaf778
   - enabled: 0
     path: Assets/Imported/AndroidBluetoothMultiplayer/Demos/Generic/Scenes/BluetoothDemoMenu.unity
     guid: c5a4c6612e053894aae4b1e9582f57bd

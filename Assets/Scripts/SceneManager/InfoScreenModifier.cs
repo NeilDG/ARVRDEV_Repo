@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class InfoScreenModifier : MonoBehaviour {
 
-	[TextArea][SerializeField] private string displayMsg;
+	[TextArea][SerializeField] protected string displayMsg;
 
 	// Use this for initialization
-	void Start () {
+	protected virtual void Start () {
 		InfoScreen infoScreen = (InfoScreen) ViewHandler.Instance.Show (ViewNames.INFO_SCREEN_NAME);
 		infoScreen.SetMessage (this.displayMsg);
 	}

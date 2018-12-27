@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
-  <Tracking>
-    <ImageTarget name="spawn_point_3" size="1.000000 1.000000" />
-    <ImageTarget name="spawn_point_2" size="1.000000 1.000000" />
-    <ImageTarget name="spawn_point_1" size="1.000000 1.000000" />
-    <ImageTarget name="image_target_2-bw" size="1.000000 0.700606" />
-    <ImageTarget name="ar_lenten_target" size="1.000000 0.615716" />
-    <ImageTarget name="ar_eraser_target" size="1.000000 0.383525" />
-    <ImageTarget name="ar_image_target_3" size="1.000000 0.700813" />
-    <ImageTarget name="ar_image_target_2" size="1.000000 0.700606" />
-    <ImageTarget name="ar_image_target_1" size="1.000000 0.700606" />
-    <ImageTarget name="ar_dlsu" size="1.000000 1.000000" />
-  </Tracking>
+<QCARConfig>
+    <Tracking>
+        <ImageTarget name="spawn_point_3" size="1.000000 1.000000"/>
+        <ImageTarget name="spawn_point_2" size="1.000000 1.000000"/>
+        <ImageTarget name="spawn_point_1" size="1.000000 1.000000"/>
+        <ImageTarget name="image_target_2-bw" size="1.000000 0.700606"/>
+        <ImageTarget name="ar_lenten_target" size="1.000000 0.615716"/>
+        <ImageTarget name="ar_eraser_target" size="1.000000 0.383525"/>
+        <ImageTarget name="ar_image_target_3" size="1.000000 0.700813"/>
+        <ImageTarget name="ar_image_target_2" size="1.000000 0.700606"/>
+        <ImageTarget name="ar_image_target_1" size="1.000000 0.700606"/>
+        <ImageTarget name="ar_dlsu" size="1.000000 1.000000"/>
+        <ImageTarget name="Diablo_3_Box_Art_2x.Top" size="27.000000 7.000000"/>
+        <ImageTarget name="Diablo_3_Box_Art_2x.Left" size="7.000000 37.932076"/>
+        <ImageTarget name="Diablo_3_Box_Art_2x.Back" size="27.000000 38.011765"/>
+        <ImageTarget name="Diablo_3_Box_Art_2x.Right" size="7.000000 37.932076"/>
+        <ImageTarget name="Diablo_3_Box_Art_2x.Bottom" size="27.000000 7.000000"/>
+        <ImageTarget name="Diablo_3_Box_Art_2x.Front" size="27.000000 38.011765"/>
+        <MultiTarget name="Diablo_3_Box_Art_2x">
+            <Part name="Diablo_3_Box_Art_2x.Left" translation="-13.5 0 0" rotation="AD: 0 1 0 -90"/>
+            <Part name="Diablo_3_Box_Art_2x.Right" translation="13.5 0 0" rotation="AD: 0 1 0 90"/>
+            <Part name="Diablo_3_Box_Art_2x.Front" translation="0 0 3.5" rotation="AD: 1 0 0 0"/>
+            <Part name="Diablo_3_Box_Art_2x.Back" translation="0 0 -3.5" rotation="AD: 0 1 0 180"/>
+            <Part name="Diablo_3_Box_Art_2x.Top" translation="0 19.0 0" rotation="AD: 1 0 0 -90"/>
+            <Part name="Diablo_3_Box_Art_2x.Bottom" translation="0 -19.0 0" rotation="AD: 1 0 0 90"/>
+        </MultiTarget>
+    </Tracking>
 </QCARConfig>
