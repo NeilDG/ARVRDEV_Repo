@@ -728,7 +728,7 @@ GameObject:
   - component: {fileID: 435630708}
   - component: {fileID: 435630707}
   m_Layer: 0
-  m_Name: Boundary
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -742,7 +742,7 @@ Transform:
   m_GameObject: {fileID: 435630705}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.70710677}
   m_LocalPosition: {x: 0, y: -0, z: -18.9}
-  m_LocalScale: {x: 80, y: 0.2, z: 80}
+  m_LocalScale: {x: 120, y: 0.2, z: 120}
   m_Children: []
   m_Father: {fileID: 1091363044}
   m_RootOrder: 3
@@ -774,7 +774,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 0cde65673901238459aa49bb5ab206eb, type: 2}
+  - {fileID: 2100000, guid: e7128ae32def62c4e87c6442532c686d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1790,7 +1790,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1591533886}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 1.39, z: 29}
+  m_LocalPosition: {x: 2, y: -1, z: 62.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1091363044}
@@ -1864,7 +1864,7 @@ ParticleSystem:
   simulationSpeed: 1
   stopAction: 0
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -1932,8 +1932,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 13
-      minScalar: 10
+      scalar: 16
+      minScalar: 13
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2484,7 +2484,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 55.218685, y: 6.6677303, z: 1}
+    m_Scale: {x: 55.218685, y: 14.001033, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -6461,7 +6461,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1621079728
 RectTransform:
   m_ObjectHideFlags: 0
