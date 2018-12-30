@@ -13,4 +13,8 @@ public class ARDropoffScreen : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void OnResetClicked() {
+        EventBroadcaster.Instance.PostEvent(EventNames.ExtendTrackEvents.ON_RESET_CLICKED);
+    }
 }

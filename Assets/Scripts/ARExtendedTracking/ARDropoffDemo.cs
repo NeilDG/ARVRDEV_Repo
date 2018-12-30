@@ -12,10 +12,15 @@ public class ARDropoffDemo : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         this.cubeCopy.SetActive(false);
+        EventBroadcaster.Instance.AddObserver(EventNames.ExtendTrackEvents.ON_RESET_CLICKED, this.OnResetEvent);
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void OnDestroy() {
+        EventBroadcaster.Instance.RemoveObserver(EventNames.ExtendTrackEvents.ON_RESET_CLICKED);
+    }
+
+    // Update is called once per frame
+    void Update () {
 		if(Input.GetMouseButtonDown(0)) {
             Debug.Log("Drop cube!");
 
@@ -32,5 +37,13 @@ public class ARDropoffDemo : MonoBehaviour {
         cube.SetActive(true);
 
         this.cubesSpawned.Add(cube);
+    }
+
+    private void OnResetEvent() {
+        for(int i = 0; i < this.cubesSpawned.Count; i++) {
+            GameObject.Destroy(this.cubesSpawned[i]);
+        }
+
+        this.cubesSpawned.Clear();
     }
 }
