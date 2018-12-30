@@ -9,7 +9,8 @@ public class SceneNames {
 	public const string MAIN_SCENE = "MainMenuScene";
 	public const string ROTATE_OBJECT_SCENE = "RotateObjectScene";
 	public const string AR_PHYSICS_SCENE = "ARPhysicsScene";
-	public const string AR_EXTENDED_TRACKING_SCENE = "ARExtendedTrackingScene";
+	public const string AR_EXTENDED_TRACKING_SCENE = "ARExtendedTracking";
+    public const string AR_OBJECT_PLACER_SCENE = "ARVirtualObjectPlacer";
 	public const string OCCLUSION_SCENE = "3DObjectScene";
 	public const string BAKED_LIGHTING_SCENE = "BakedLighting";
 	public const string VISUAL_EFFECTS_MENU_SCENE = "VisualEffectsMenuScene";

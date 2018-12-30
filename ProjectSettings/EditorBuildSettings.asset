@@ -12,7 +12,10 @@ EditorBuildSettings:
     path: Assets/Scenes/ARPhysicsScene.unity
     guid: 7b04cb6372a34e54696b4a53f9ae0d03
   - enabled: 1
-    path: Assets/Scenes/ARExtendedTrackingScene.unity
+    path: Assets/Scenes/ARExtendedTracking.unity
+    guid: df41fd3d0e7f0d94783107d5e5e9d7a8
+  - enabled: 1
+    path: Assets/Scenes/ARVirtualObjectPlacer.unity
     guid: 8baba12000e09814288ca66e01e43f59
   - enabled: 1
     path: Assets/Scenes/3DObjectScene.unity

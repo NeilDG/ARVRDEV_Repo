@@ -20,6 +20,10 @@ public class MainMenuScreen : View {
 		LoadManager.Instance.LoadScene (SceneNames.AR_EXTENDED_TRACKING_SCENE);
 	}
 
+    public void OnObjectPlacerClicked() {
+        LoadManager.Instance.LoadScene(SceneNames.AR_OBJECT_PLACER_SCENE);
+    }
+
 	public void OnOcclusionClicked() {
 		LoadManager.Instance.LoadScene (SceneNames.OCCLUSION_SCENE);
 	}
