@@ -30,6 +30,7 @@ public class EventNames {
 		public const string ON_SHOW_ALL = "ON_SHOW_ALL";
 		public const string ON_HIDE_ALL = "ON_HIDE_ALL";
 		public const string ON_DELETE_ALL = "ON_DELETE_ALL";
+        public const string ON_RESET_CLICKED = "ON_RESET_CLICKED";
 	}
 
     public class VideoAREvents {

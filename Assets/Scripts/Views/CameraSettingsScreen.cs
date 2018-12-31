@@ -12,8 +12,6 @@ public class CameraSettingsScreen : View {
 	// Use this for initialization
 	void Start () {
         this.SetSliderValues();
-        CameraDevice.Instance.Init();
-        CameraDevice.Instance.Start();
     }
 	
 	// Update is called once per frame

@@ -21,7 +21,7 @@ public class ARCameraConfig : MonoBehaviour {
 	private void OnVuforiaStarted() {
 		CameraDevice.Instance.SetFocusMode (CameraDevice.FocusMode.FOCUS_MODE_TRIGGERAUTO);
 
-		if (CameraDevice.Instance.SetFrameFormat(Image.PIXEL_FORMAT.GRAYSCALE, true))
+		/*if (CameraDevice.Instance.SetFrameFormat(Image.PIXEL_FORMAT.GRAYSCALE, true))
 		{
 			Debug.Log("Successfully registered pixel format " + Image.PIXEL_FORMAT.GRAYSCALE);
 
@@ -39,7 +39,7 @@ public class ARCameraConfig : MonoBehaviour {
         // Print fields to device logs
         foreach (CameraDevice.CameraField field in cameraFields) {
             Debug.Log("Key: " + field.Key + "; Type: " + field.Type.ToString());
-        }
+        }*/
 
     }
 }
