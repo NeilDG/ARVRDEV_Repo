@@ -3,16 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Vuforia;
 
-public class ScreenObjectPlacer : ImageTargetBehaviour {
+public class ObjectPlacerTargetBehavior : ImageTargetBehaviour {
 
-	public enum GameState {
-		NONE,
-		INITIALIZE,
-		PLACEMENT,
-		VIEW_MODE
-	}
-
-	private GameState currentState = GameState.NONE;
 	private bool trackedSuccess = false;
 
 	// Use this for initialization
