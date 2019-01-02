@@ -8,17 +8,6 @@ using Vuforia;
 /// </summary>
 public class PhysicsSceneManager : MonoBehaviour {
 
-    private static PhysicsSceneManager sharedInstance = null;
-    public PhysicsSceneManager Instance {
-        get {
-            return sharedInstance;
-        }
-    }
-
-    private void Awake() {
-        sharedInstance = this;
-
-    }
     // Use this for initialization
     void Start () {
         VuforiaARController.Instance.RegisterVuforiaInitializedCallback(this.OnARStart);
@@ -26,7 +15,6 @@ public class PhysicsSceneManager : MonoBehaviour {
 
     private void OnDestroy() {
         VuforiaARController.Instance.UnregisterVuforiaInitializedCallback(this.OnARStart);
-        sharedInstance = null; 
     }
 
     private void OnARStart() {

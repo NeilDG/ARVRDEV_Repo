@@ -10,6 +10,7 @@ public class ObjectSpace : MonoBehaviour {
 
 	[SerializeField] private Camera arCamera;
 
+    private Vector3 cameraOffset = new Vector3(0, -8.0f, 0);
 	private List<GameObject> placedObjects;
 
 	// Use this for initialization
@@ -29,6 +30,19 @@ public class ObjectSpace : MonoBehaviour {
 		EventBroadcaster.Instance.RemoveObserver (EventNames.ExtendTrackEvents.ON_SHOW_ALL);
 		EventBroadcaster.Instance.RemoveObserver (EventNames.ExtendTrackEvents.ON_DELETE_ALL);
 	}
+
+    /// <summary>
+    /// Used for a user-defined target. The platform is oriented towards the camera for better viewing experience.
+    /// </summary>
+    public void FacetoCamera() {
+        Quaternion originRot = this.transform.localRotation;
+        this.transform.LookAt(this.arCamera.transform.localPosition + this.cameraOffset);
+
+        originRot.x = this.transform.localRotation.x; //only update the X value after lookAt
+        this.transform.localRotation = originRot;
+
+        Debug.Log("Platform orientation updated!");
+    }
 	
 	// Update is called once per frame
 	void Update () {
