@@ -19,5 +19,6 @@ public class SceneNames {
     public const string AR_MOLECULE_VIEWER = "ARMoleculeViewer";
     public const string AR_WRECKING_BALL_SCENE = "ARWreckingBallScene";
     public const string AR_BOX_SCENE = "ARBoxScene";
+    public const string AR_PHOTOREALISM_SCENE = "ARPhotoRealism";
 
 }
