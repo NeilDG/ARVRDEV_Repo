@@ -53,4 +53,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Imported/AndroidBluetoothMultiplayer/Demos/UNet/BluetoothMultiplayerDemo.unity
     guid: e45614ac4da622849b314ef4c5157795
+  - enabled: 1
+    path: Assets/Scenes/ARPhotoRealism.unity
+    guid: e3e8fa27316318a47ac29afe0e391075
   m_configObjects: {}

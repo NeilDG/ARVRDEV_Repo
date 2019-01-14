@@ -56,6 +56,10 @@ public class MainMenuScreen : View {
         LoadManager.Instance.LoadScene(SceneNames.AR_BOX_SCENE);
     }
 
+    public void OnARPhotorealismClicked() {
+        LoadManager.Instance.LoadScene(SceneNames.AR_PHOTOREALISM_SCENE);
+    }
+
 	public override void OnRootScreenBack ()
 	{
 		DialogInterface dialog = DialogBuilder.Create (DialogBuilder.DialogType.CHOICE_DIALOG);
