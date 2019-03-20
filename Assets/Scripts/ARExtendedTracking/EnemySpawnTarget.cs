@@ -26,7 +26,7 @@ public class EnemySpawnTarget : ImageTargetBehaviour {
             this.spawnManager.gameObject.SetActive(true);
             this.activated = true;
         }
-        else if(newStatus == Status.NOT_FOUND && this.activated) {
+        else if(newStatus == Status.NO_POSE && this.activated) {
             this.spawnManager.gameObject.SetActive(false);
             this.activated = false;
         }
