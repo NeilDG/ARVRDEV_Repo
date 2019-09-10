@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/SogangSplashScene.unity
+    guid: e247828b777db9e4e85f91de550a556f
+  - enabled: 1
     path: Assets/Scenes/MainMenuScene.unity
     guid: 571d1ba7027f37748b3829c80d330f46
   - enabled: 1
