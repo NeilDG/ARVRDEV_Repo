@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using Vuforia;
 
-public class FirstTarget : ImageTargetBehaviour {
+public class FirstTarget : ImageTargetBehaviour, ITrackableEventHandler {
 
 	// Use this for initialization
 	void Start () {
-		
+        this.RegisterTrackableEventHandler(this);
 	}
 
-	public override void OnTrackerUpdate (Status newStatus)
-	{
-		base.OnTrackerUpdate (newStatus);
-		if (newStatus == Status.TRACKED) {
-			EventBroadcaster.Instance.PostEvent (EventNames.ARPhysicsEvents.ON_FIRST_TARGET_SCAN);
-		}
-	}
+    private void OnDestroy() {
+        this.UnregisterTrackableEventHandler(this);
+    }
+
+    public void OnTrackableStateChanged(Status previousStatus, Status newStatus) {
+        if (newStatus == Status.TRACKED) {
+            EventBroadcaster.Instance.PostEvent(EventNames.ARPhysicsEvents.ON_FIRST_TARGET_SCAN);
+        }
+    }
 }

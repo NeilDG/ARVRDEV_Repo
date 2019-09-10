@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Vuforia;
 
-public class WreckingBallTargetHandler : ImageTargetBehaviour {
+public class WreckingBallTargetHandler : ImageTargetBehaviour, ITrackableEventHandler {
 
     private WreckingBallPlacer wreckingBallPlacer;
 
@@ -11,23 +11,27 @@ public class WreckingBallTargetHandler : ImageTargetBehaviour {
 	void Start () {
         this.wreckingBallPlacer = this.transform.Find("WBPlatform").GetComponent<WreckingBallPlacer>();
         this.wreckingBallPlacer.gameObject.SetActive(false);
+
+        this.RegisterTrackableEventHandler(this);
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void OnDestroy() {
+        this.UnregisterTrackableEventHandler(this);
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 
-    public override void OnTrackerUpdate(Status newStatus) {
-        base.OnTrackerUpdate(newStatus);
+    public void OnTrackableStateChanged(Status previousStatus, Status newStatus) {
         if (newStatus == Status.TRACKED) {
             this.wreckingBallPlacer.gameObject.SetActive(true);
             this.wreckingBallPlacer.PlotWreckingBall();
         }
-        else if(newStatus == Status.NO_POSE) {
+        else if (newStatus == Status.NO_POSE) {
             this.wreckingBallPlacer.gameObject.SetActive(false);
             this.wreckingBallPlacer.MarkTargetLost();
         }
     }
-
 }

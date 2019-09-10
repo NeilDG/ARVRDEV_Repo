@@ -8,7 +8,7 @@ using Vuforia;
 /// By: NeilDG
 ///HINT: Alt+Insert to implement interface functions
 /// </summary>
-public class VirtualObjectPlacer : ImageTargetBehaviour, IVirtualButtonEventHandler {
+public class VirtualObjectPlacer : ImageTargetBehaviour, IVirtualButtonEventHandler, ITrackableEventHandler {
 
 	public enum GameState {
 		NONE,
@@ -23,23 +23,17 @@ public class VirtualObjectPlacer : ImageTargetBehaviour, IVirtualButtonEventHand
 
 	private bool trackedSuccess = false;
 
-	// Use this for initialization
-	void Start () {
-		this.buttonPlacer.RegisterEventHandler (this);
-	}
+    // Use this for initialization
+    void Start () {
+        this.buttonPlacer.RegisterEventHandler (this);
+        this.RegisterTrackableEventHandler(this);
+    }
 
-	public override void OnTrackerUpdate (Status newStatus)
-	{
-		base.OnTrackerUpdate (newStatus);
-		if (newStatus == Status.TRACKED && this.trackedSuccess == false) {
-			EventBroadcaster.Instance.PostEvent (EventNames.ExtendTrackEvents.ON_TARGET_SCAN);
-			this.abominationCopy.SetActive (false);
-			this.trackedSuccess = true;
-		}
-			
-	}
+    private void OnDestroy() {
+        this.UnregisterTrackableEventHandler(this);
+    }
 
-	public void OnButtonPressed (VirtualButtonBehaviour vb)
+    public void OnButtonPressed (VirtualButtonBehaviour vb)
 	{
 		Vector2 topLeftPos = Vector2.zero;
 		Vector2 bottomRightPos = Vector2.zero;
@@ -64,4 +58,12 @@ public class VirtualObjectPlacer : ImageTargetBehaviour, IVirtualButtonEventHand
 	{
 
 	}
+
+    public void OnTrackableStateChanged(Status previousStatus, Status newStatus) {
+        if (newStatus == Status.TRACKED && this.trackedSuccess == false) {
+            EventBroadcaster.Instance.PostEvent(EventNames.ExtendTrackEvents.ON_TARGET_SCAN);
+            this.abominationCopy.SetActive(false);
+            this.trackedSuccess = true;
+        }
+    }
 }
